@@ -20,12 +20,112 @@ body {
 }
 
 /* Навигация */
+/* Обновленные стили хедера и логотипа */
 header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 40px 60px;
+    text-align: center;
+    padding: 20px 15px;
     border-bottom: 1px solid var(--border-color);
+    gap: 15px;
+}
+
+.logo-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+}
+
+.logo-main {
+    font-size: 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-dark);
+    /* Запрещаем перенос отдельных букв, разрешаем только один аккуратный перенос по словам */
+    white-space: nowrap; 
+    word-break: keep-all;
+}
+
+.logo-sub {
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-top: 5px;
+    /* На мобильных субтитры тоже будут в одну строку или аккуратно по словам */
+    word-break: keep-all;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav a {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+/* Оптимизация отображения тяжелых изображений */
+.photo-frame img,
+.grid-thumb,
+.archive-item img {
+    /* Подсказываем браузеру оптимизировать отрисовку при изменении масштаба */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: quality;
+    /* Защита от деформации */
+    object-fit: cover; 
+}
+
+/* МЕДИА-ЗАПРОСЫ ДЛЯ МОБИЛЬНЫХ (Включая Pixel 9) */
+@media (max-width: 768px) {
+    .logo-main {
+        /* Чуть-чуть уменьшаем размер шрифта, чтобы фраза «É t u d e s  u r b a i n e s» */
+        /* гарантированно помещалась в ширину экрана Pixel 9 без лишних переносов */
+        font-size: 16px; 
+        letter-spacing: 0.12em;
+    }
+
+    .logo-sub {
+        font-size: 9px;
+    }
+
+    /* Переводим главную витрину в аккуратную вертикальную стопку по одной карточке */
+    .gallery-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        padding: 0 10px;
+    }
+
+    /* Корректируем пропорции карточек на мобилке */
+    .grid-thumb {
+        height: 240px !important;
+    }
+
+    /* Главный split-screen на мобильном превращается в последовательные блоки */
+    .hero-section {
+        grid-template-columns: 1fr !important;
+        gap: 25px !important;
+    }
+
+    .photo-frame img {
+        aspect-ratio: 3/2;
+        height: auto;
+    }
+
+    /* Адаптируем карточку "Обо мне" */
+    .profile-card {
+        padding: 30px 20px !important;
+        margin: 0 10px;
+    }
 }
 
 .logo-block {
