@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>É T U D E S   U R B A I N E S — Limited Architectural Prints</title>
+    <title>ÉTUDES URBAINES — Limited Architectural Prints</title>
     <style>
         :root {
             --bg-light: #f8f9fa;
@@ -247,7 +247,7 @@
         
         <section class="hero-section">
             <div class="photo-frame">
-                <img src="P1050803.jpg" alt="Тбилиси. Банк Грузии.">
+                <img src="assets/P1050803.jpg" alt="Тбилиси. Банк Грузии.">
             </div>
             
             <div class="info-panel">
@@ -266,27 +266,35 @@
                     </div>
                 </div>
                 
-                <button class="cta-button" onclick="alert('Заявка отправлена. Менеджер свяжется для уточнения параметров оформления под ключ.')">Оформить под ключ</button>
+                <div id="order-form-container" style="margin-top: 30px;">
+                    <div style="margin-bottom: 12px;">
+                        <input type="text" id="client-name" placeholder="ВАШЕ ИМЯ" style="width: 100%; padding: 15px; border: 1px solid var(--border-color); font-size: 13px; outline: none;">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <input type="text" id="client-contact" placeholder="ТЕЛЕФОН ИЛИ ТЕЛЕГРАМ" style="width: 100%; padding: 15px; border: 1px solid var(--border-color); font-size: 13px; outline: none;">
+                    </div>
+                    <button class="cta-button" id="submit-btn" onclick="sendLeadToTelegram()">Оформить под ключ</button>
+                </div>
             </div>
         </section>
 
         <section class="gallery-grid" id="collection">
             <div class="grid-item">
-                <div class="grid-thumb" style="background: url('пост 1.jpg') center/cover no-repeat;"></div>
+                <div class="grid-thumb" style="background: url('assets/пост 1.jpg') center/cover no-repeat;"></div>
                 <div class="grid-meta">
                     <span>Космай [Сербия]</span>
                     <span style="color: var(--text-muted);">Серия Brutal</span>
                 </div>
             </div>
             <div class="grid-item">
-                <div class="grid-thumb" style="background: url('IMG_20260306_104846_943.jpg') center/cover no-repeat;"></div>
+                <div class="grid-thumb" style="background: url('assets/IMG_20260306_104846_943.jpg') center/cover no-repeat;"></div>
                 <div class="grid-meta">
                     <span>Сити в тумане [Москва]</span>
                     <span style="color: var(--text-muted);">Серия Neon</span>
                 </div>
             </div>
             <div class="grid-item">
-                <div class="grid-thumb" style="background: url('PA111668.jpg') center/cover no-repeat;"></div>
+                <div class="grid-thumb" style="background: url('assets/PA111668.jpg') center/cover no-repeat;"></div>
                 <div class="grid-meta">
                     <span>Панорама дворца [Царицыно]</span>
                     <span style="color: var(--text-muted);">Серия Atmosphere</span>
@@ -295,6 +303,86 @@
         </section>
 
     </div>
+    <script>
+    function sendLeadToTelegram() {
+        // Данные твоего бота
+        const botToken = '8678397591:AAGj-5YIw4ITiLsMpgJW4PVbeyJtKyqX17c';
+        const chatId = '1000351665';
 
+        // Находим элементы формы
+        const nameInput = document.getElementById('client-name');
+        const contactInput = document.getElementById('client-contact');
+        const btn = document.getElementById('submit-btn');
+
+        if (!nameInput || !contactInput || !btn) {
+            console.error('Критические элементы формы не найдены в DOM');
+            return;
+        }
+
+        const name = nameInput.value.trim();
+        const contact = contactInput.value.trim();
+        
+        // Безопасное получение выбранного формата
+        const activeBtn = document.querySelector('.format-btn.active');
+        let activeFormat = 'Не выбран';
+        if (activeBtn) {
+            // Берем текст кнопки, разделяем по строкам и берем первую часть (например, А0)
+            activeFormat = activeBtn.innerText.split('\n')[0].trim();
+        }
+
+        if (!name || !contact) {
+            alert('Пожалуйста, заполните оба поля, чтобы мы могли связаться с вами.');
+            return;
+        }
+
+        // Блокируем кнопку на время отправки
+        btn.innerText = 'ОТПРАВКА...';
+        btn.disabled = true;
+
+        // Формируем текст сообщения (экранируем спецсимволы для стабильности Markdown)
+        const message = `🔔 *Новый лид [ÉTUDES URBAINES]*\n\n👤 *Имя:* ${name}\n📱 *Контакт:* ${contact}\n🖼 *Арт:* Геометрия формы. Тбилиси\n📐 *Формат:* ${activeFormat}`;
+
+        const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+        
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: message,
+                parse_mode: 'Markdown'
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                document.getElementById('order-form-container').innerHTML = `
+                    <div style="padding: 20px; background: #e6f4ea; color: #137333; text-align: center; font-size: 14px; font-weight: 500; letter-spacing: 0.05em;">
+                        ЗАЯВКА ПРИНЯТА.<br><span style="font-size: 12px; font-weight: 400;">Мы свяжемся с вами для примерки арта в интерьер.</span>
+                    </div>
+                `;
+            } else {
+                return response.json().then(err => { throw new Error(JSON.stringify(err)); });
+            }
+        })
+        .catch(error => {
+            console.error('Telegram API Error:', error);
+            alert('Произошла ошибка при отправке. Проверьте консоль или попробуйте еще раз.');
+            btn.innerText = 'ОФОРМИТЬ ПОД КЛЮЧ';
+            btn.disabled = false;
+        });
+    }
+
+    // Логика переключения кнопок формата
+    document.addEventListener('DOMContentLoaded', () => {
+        const formatButtons = document.querySelectorAll('.format-btn');
+        formatButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                formatButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    });
+    </script>
 </body>
 </html>
