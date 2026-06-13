@@ -4,257 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ÉTUDES URBAINES — Limited Architectural Prints</title>
-    <style>
-        :root {
-            --bg-light: #f8f9fa;
-            --text-dark: #111111;
-            --text-muted: #767676;
-            --border-color: #e5e5e5;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Навигация */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 40px 60px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .logo-block {
-            text-align: center;
-            flex-grow: 1;
-        }
-
-        .logo-main {
-            font-size: 28px;
-            font-weight: 300;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-        }
-
-        .logo-sub {
-            font-size: 13px;
-            font-style: italic;
-            color: var(--text-muted);
-            margin-top: 4px;
-            letter-spacing: 0.05em;
-        }
-
-        nav a {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            text-decoration: none;
-            color: var(--text-dark);
-            margin-left: 30px;
-            font-weight: 500;
-        }
-
-        /* Главный контейнер сетки */
-        .main-container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 60px;
-        }
-
-        /* Продуктовый блок (Split Screen) */
-        .hero-section {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 60px;
-            margin-bottom: 120px;
-            align-items: start;
-        }
-
-        .photo-frame {
-            background-color: #eaeaea;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .photo-frame img {
-            width: 100%;
-            display: block;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        /* Контентная правая панель */
-        .info-panel {
-            position: sticky;
-            top: 40px;
-        }
-
-        .catalog-index {
-            font-size: 12px;
-            font-variant-numeric: tabular-nums;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            letter-spacing: 0.1em;
-        }
-
-        .item-title {
-            font-size: 32px;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            line-height: 1.2;
-        }
-
-        .item-description {
-            font-size: 15px;
-            color: #333;
-            margin-bottom: 40px;
-            text-align: justify;
-        }
-
-        /* Выбор формата */
-        .format-selector {
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 30px 0;
-            margin-bottom: 40px;
-        }
-
-        .selector-title {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
-
-        .options-group {
-            display: flex;
-            gap: 16px;
-        }
-
-        .format-btn {
-            flex: 1;
-            padding: 14px;
-            border: 1px solid var(--border-color);
-            background: white;
-            font-size: 13px;
-            cursor: pointer;
-            text-align: left;
-            transition: all 0.2s ease;
-        }
-
-        .format-btn:hover, .format-btn.active {
-            border-color: var(--text-dark);
-            background: var(--text-dark);
-            color: white;
-        }
-
-        .format-btn span {
-            display: block;
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        .format-btn:hover span, .format-btn.active span {
-            color: #aaa;
-        }
-
-        /* Кнопка действия */
-        .cta-button {
-            width: 100%;
-            padding: 20px;
-            background: var(--text-dark);
-            color: white;
-            border: none;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: opacity 0.2s ease;
-        }
-
-        .cta-button:hover {
-            opacity: 0.9;
-        }
-
-        /* Сетка превью (Дропы) */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 60px;
-        }
-
-        .grid-item {
-            cursor: pointer;
-        }
-
-        .grid-thumb {
-            width: 100%;
-            aspect-ratio: 4/3;
-            background-color: #eaeaea;
-            margin-bottom: 16px;
-        }
-
-        .grid-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        @media (max-width: 1024px) {
-            .hero-section { grid-template-columns: 1fr; gap: 40px; }
-            .gallery-grid { grid-template-columns: 1fr; }
-            header { padding: 20px; }
-            .main-container { padding: 20px; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <div style="font-size: 11px; letter-spacing: 0.1em; color: var(--text-muted);">MOW / VOL. 1</div>
-        <div class="logo-block">
+        <div class="logo-block" id="logo-clickable" style="cursor: pointer;">
             <div class="logo-main">É t u d e s   u r b a i n e s</div>
             <div class="logo-sub">ограниченная серия архитектурной фотографии</div>
         </div>
         <nav>
-            <a href="#collection">Коллекции</a>
+            <a href="#" id="nav-collections">Коллекции</a>
+            <a href="#" id="nav-archive" style="color: #0066cc;">Полный Архив</a>
             <a href="#services">Дизайнерам</a>
-            <a href="#contacts">Контакты</a>
+            <a href="#" id="nav-contacts">Контакты</a>
         </nav>
     </header>
 
     <div class="main-container">
         
-        <section class="hero-section">
+        <section class="hero-section" id="main-hero">
             <div class="photo-frame">
-                <img src="assets/P1050803.jpg" alt="Тбилиси. Банк Грузии.">
+                <img src="assets/IMG_20260525_011725_166.jpg" alt="ВДНХ фонтан.">
             </div>
             
             <div class="info-panel">
-                <div class="catalog-index">01 / 15 — SERIES №1: BRUTAL & FORM</div>
-                <h1 class="item-title">Геометрия формы.<br>Тбилиси.</h1>
+                <div class="catalog-index">08 / 15 — SERIES №3: ATMOSPHERE & HERITAGE</div>
+                <h1 class="item-title">ВДНХ. Фонтан.<br>Атмосфера.</h1>
                 <p class="item-description">
-                    Études urbaines представляет кураторский взгляд на культовую бруталистскую архитектуру Тбилиси. Жесткие тектонические блоки, чистая симметрия и контрастный бирюзовый акцент на фоне глубокого неба. Уникальная оптика исследователя городской среды превращает масштабное монументальное здание в чистый интерьерный арт-объект. Лимитированный тираж предпечатной подготовки под премиальный крупный формат.
+                    Сложная динамика водного потока на фоне монументальной купольной архитектуры ВДНХ. Контраст летящих брызг и статичного величия наследия ушедшей эпохи. Уникальная оптика исследователя городской среды превращает масштабное монументальное здание в чистый интерьерный арт-объект. Лимитированный тираж предпечатной подготовки под премиальный крупный формат.
                 </p>
                 
                 <div class="format-selector">
@@ -273,116 +52,150 @@
                     <div style="margin-bottom: 20px;">
                         <input type="text" id="client-contact" placeholder="ТЕЛЕФОН ИЛИ ТЕЛЕГРАМ" style="width: 100%; padding: 15px; border: 1px solid var(--border-color); font-size: 13px; outline: none;">
                     </div>
+                    
+                    <button id="back-to-archive-btn" class="secondary-button" style="display: none; margin-bottom: 12px;">← Вернуться в архив</button>
+                    
                     <button class="cta-button" id="submit-btn" onclick="sendLeadToTelegram()">Оформить под ключ</button>
                 </div>
             </div>
         </section>
 
-        <section class="gallery-grid" id="collection">
-            <div class="grid-item">
+        <section class="gallery-grid" id="main-showcase">
+            <div class="grid-item" data-art="vdnh_fountain">
+                <div class="grid-thumb" style="background: url('assets/IMG_20260525_011725_166.jpg') center/cover no-repeat;"></div>
+                <div class="grid-meta">
+                    <span>ВДНХ фонтан [Москва]</span>
+                    <span style="color: var(--text-muted);">Серия Atmosphere</span>
+                </div>
+            </div>
+            <div class="grid-item" data-art="kosmaj">
                 <div class="grid-thumb" style="background: url('assets/пост 1.jpg') center/cover no-repeat;"></div>
                 <div class="grid-meta">
                     <span>Космай [Сербия]</span>
                     <span style="color: var(--text-muted);">Серия Brutal</span>
                 </div>
             </div>
-            <div class="grid-item">
-                <div class="grid-thumb" style="background: url('assets/IMG_20260306_104846_943.jpg') center/cover no-repeat;"></div>
-                <div class="grid-meta">
-                    <span>Сити в тумане [Москва]</span>
-                    <span style="color: var(--text-muted);">Серия Neon</span>
-                </div>
-            </div>
-            <div class="grid-item">
+            <div class="grid-item" data-art="tsaritsyno">
                 <div class="grid-thumb" style="background: url('assets/PA111668.jpg') center/cover no-repeat;"></div>
                 <div class="grid-meta">
                     <span>Панорама дворца [Царицыно]</span>
                     <span style="color: var(--text-muted);">Серия Atmosphere</span>
                 </div>
             </div>
+            <div class="grid-item" data-art="tbilisi">
+                <div class="grid-thumb" style="background: url('assets/P1050803.jpg') center/cover no-repeat;"></div>
+                <div class="grid-meta">
+                    <span>Геометрия формы [Тбилиси]</span>
+                    <span style="color: var(--text-muted);">Серия Brutal</span>
+                </div>
+            </div>
+            <div class="grid-item" data-art="city">
+                <div class="grid-thumb" style="background: url('assets/IMG_20260306_104846_943.jpg') center/cover no-repeat;"></div>
+                <div class="grid-meta">
+                    <span>Сити в тумане [Москва]</span>
+                    <span style="color: var(--text-muted);">Серия Neon</span>
+                </div>
+            </div>
         </section>
 
-    </div>
-    <script>
-    function sendLeadToTelegram() {
-        // Данные твоего бота
-        const botToken = '8678397591:AAGj-5YIw4ITiLsMpgJW4PVbeyJtKyqX17c';
-        const chatId = '1000351665';
-
-        // Находим элементы формы
-        const nameInput = document.getElementById('client-name');
-        const contactInput = document.getElementById('client-contact');
-        const btn = document.getElementById('submit-btn');
-
-        if (!nameInput || !contactInput || !btn) {
-            console.error('Критические элементы формы не найдены в DOM');
-            return;
-        }
-
-        const name = nameInput.value.trim();
-        const contact = contactInput.value.trim();
-        
-        // Безопасное получение выбранного формата
-        const activeBtn = document.querySelector('.format-btn.active');
-        let activeFormat = 'Не выбран';
-        if (activeBtn) {
-            // Берем текст кнопки, разделяем по строкам и берем первую часть (например, А0)
-            activeFormat = activeBtn.innerText.split('\n')[0].trim();
-        }
-
-        if (!name || !contact) {
-            alert('Пожалуйста, заполните оба поля, чтобы мы могли связаться с вами.');
-            return;
-        }
-
-        // Блокируем кнопку на время отправки
-        btn.innerText = 'ОТПРАВКА...';
-        btn.disabled = true;
-
-        // Формируем текст сообщения (экранируем спецсимволы для стабильности Markdown)
-        const message = `🔔 *Новый лид [ÉTUDES URBAINES]*\n\n👤 *Имя:* ${name}\n📱 *Контакт:* ${contact}\n🖼 *Арт:* Геометрия формы. Тбилиси\n📐 *Формат:* ${activeFormat}`;
-
-        const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-        
-        fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                chat_id: chatId,
-                text: message,
-                parse_mode: 'Markdown'
-            })
-        })
-        .then(response => {
-            if (response.ok) {
-                document.getElementById('order-form-container').innerHTML = `
-                    <div style="padding: 20px; background: #e6f4ea; color: #137333; text-align: center; font-size: 14px; font-weight: 500; letter-spacing: 0.05em;">
-                        ЗАЯВКА ПРИНЯТА.<br><span style="font-size: 12px; font-weight: 400;">Мы свяжемся с вами для примерки арта в интерьер.</span>
+        <div id="full-archive-page" style="display: none;">
+            <div class="archive-section">
+                <h2 class="archive-category-title">SERIES №1: BRUTAL & FORM</h2>
+                <div class="archive-grid">
+                    <div class="archive-item" data-art="tbilisi">
+                        <img src="assets/P1050803.jpg" alt="Тбилиси">
+                        <div class="archive-item-meta">Геометрия формы (Тбилиси)</div>
                     </div>
-                `;
-            } else {
-                return response.json().then(err => { throw new Error(JSON.stringify(err)); });
-            }
-        })
-        .catch(error => {
-            console.error('Telegram API Error:', error);
-            alert('Произошла ошибка при отправке. Проверьте консоль или попробуйте еще раз.');
-            btn.innerText = 'ОФОРМИТЬ ПОД КЛЮЧ';
-            btn.disabled = false;
-        });
-    }
+                    <div class="archive-item" data-art="kosmaj">
+                        <img src="assets/пост 1.jpg" alt="Космай ракурс 1">
+                        <div class="archive-item-meta">Монумент Космай — Ракурс 1</div>
+                    </div>
+                    <div class="archive-item" data-art="kosmaj_r2">
+                        <img src="assets/IMG_20260104_201002_128.jpg" alt="Космай ракурс 2">
+                        <div class="archive-item-meta">Монумент Космай — Ракурс 2</div>
+                    </div>
+                    <div class="archive-item" data-art="kosmaj_r3">
+                        <img src="assets/пост 2.jpg" style="filter: contrast(1.15);" alt="Космай ракурс 3">
+                        <div class="archive-item-meta">Монумент Космай — Ракурс 3</div>
+                    </div>
+                    <div class="archive-item" data-art="panelka">
+                        <img src="assets/PB100206-3.jpg" alt="Панелька с вопросом">
+                        <div class="archive-item-meta">Панелька с вопросом</div>
+                    </div>
+                    <div class="archive-item" data-art="circular_house">
+                        <img src="assets/P1012089.jpg" alt="Circular house">
+                        <div class="archive-item-meta">Circular house</div>
+                    </div>
+                </div>
+            </div>
 
-    // Логика переключения кнопок формата
-    document.addEventListener('DOMContentLoaded', () => {
-        const formatButtons = document.querySelectorAll('.format-btn');
-        formatButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                formatButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    });
-    </script>
+            <div class="archive-section">
+                <h2 class="archive-category-title">SERIES №2: CYBER & NEON</h2>
+                <div class="archive-grid">
+                    <div class="archive-item" data-art="city">
+                        <img src="assets/IMG_20260306_104846_943.jpg" alt="Сити в тумане">
+                        <div class="archive-item-meta">Сити в тумане (Москва)</div>
+                    </div>
+                    <div class="archive-item" data-art="red_city">
+                        <img src="assets/IMG_20260306_104817_033.jpg" alt="Красный сити">
+                        <div class="archive-item-meta">Красный сити</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="archive-section">
+                <h2 class="archive-category-title">SERIES №3: ATMOSPHERE & HERITAGE</h2>
+                <div class="archive-grid">
+                    <div class="archive-item" data-art="tsaritsyno">
+                        <img src="assets/PA111668.jpg" alt="Панорама дворца">
+                        <div class="archive-item-meta">Панорама дворца (Царицыно)</div>
+                    </div>
+                    <div class="archive-item" data-art="tsaritsyno_p2">
+                        <img src="assets/PA111724.jpg" alt="Панорама дворца ракурс 2">
+                        <div class="archive-item-meta">Панорама дворца — Ракурс 2</div>
+                    </div>
+                    <div class="archive-item" data-art="vdnh_fountain">
+                        <img src="assets/IMG_20260525_011725_166.jpg" alt="ВДНХ фонтан">
+                        <div class="archive-item-meta">ВДНХ фонтан</div>
+                    </div>
+                    <div class="archive-item" data-art="vdnh_tower">
+                        <img src="assets/IMG_20260525_163640_186.jpg" alt="ВДНХ Останкинская башня">
+                        <div class="archive-item-meta">ВДНХ Останкинская башня</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="about-page" style="display: none;">
+            <div class="profile-card">
+                <div class="profile-avatar">
+                    <img src="assets/avatar.jpg" alt="Игорь Печорский" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'">
+                </div>
+                <h2 class="profile-name">Игорь Печорский</h2>
+                <div class="profile-title">стрит–фотограф, архитектурный фотограф</div>
+                <p class="profile-bio">
+                    Исследую тектонику городского пространства, бруталистские объемы и скрытую геометрию мегаполисов. Каждая работа – это фиксация архитектурной формы, очищенной от визуального шума, подготовленная специально под широкоформатную интерьерную печать премиального уровня.
+                </p>
+                
+                <div class="profile-contacts-grid">
+                    <div class="contact-row">
+                        <span class="contact-label">Telegram</span>
+                        <a href="https://t.me/yopech" target="_blank" class="contact-value">@yopech</a>
+                    </div>
+                    <div class="contact-row">
+                        <span class="contact-label">Телефон</span>
+                        <a href="tel:+79126201728" class="contact-value">+7 (912) 620–17–28</a>
+                    </div>
+                    <div class="contact-row">
+                        <span class="contact-label">Instagram</span>
+                        <a href="https://instagram.com/yooopech" target="_blank" class="contact-value">@yooopech</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

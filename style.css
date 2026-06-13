@@ -1,0 +1,391 @@
+:root {
+    --bg-light: #f8f9fa;
+    --text-dark: #111111;
+    --text-muted: #767676;
+    --border-color: #e5e5e5;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Навигация */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 60px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo-block {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.logo-main {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+}
+
+.logo-sub {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+}
+
+nav a {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    color: var(--text-dark);
+    margin-left: 30px;
+    font-weight: 500;
+}
+
+/* Главный контейнер сетки */
+.main-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 60px;
+}
+
+/* Продуктовый блок (Split Screen) */
+.hero-section {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    margin-bottom: 120px;
+    align-items: start;
+}
+
+.photo-frame {
+    background-color: #eaeaea;
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-frame img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Контентная правая панель */
+.info-panel {
+    position: sticky;
+    top: 40px;
+}
+
+.catalog-index {
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    letter-spacing: 0.1em;
+}
+
+.item-title {
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.item-description {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 40px;
+    text-align: justify;
+}
+
+/* Выбор формата */
+.format-selector {
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 30px 0;
+    margin-bottom: 40px;
+}
+
+.selector-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.options-group {
+    display: flex;
+    gap: 16px;
+}
+
+.format-btn {
+    flex: 1;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    background: white;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+.format-btn:hover, .format-btn.active {
+    border-color: var(--text-dark);
+    background: var(--text-dark);
+    color: white;
+}
+
+.format-btn span {
+    display: block;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.format-btn:hover span, .format-btn.active span {
+    color: #aaa;
+}
+
+/* Кнопка действия */
+.cta-button {
+    width: 100%;
+    padding: 20px;
+    background: var(--text-dark);
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.cta-button:hover {
+    opacity: 0.9;
+}
+
+/* Сетка превью (Дропы) */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Меняем 3 на 4 */
+    gap: 40px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 60px;
+}
+
+.grid-item {
+    cursor: pointer;
+}
+
+.grid-thumb {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background-color: #eaeaea;
+    margin-bottom: 16px;
+}
+
+.grid-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+@media (max-width: 1024px) {
+    .hero-section { grid-template-columns: 1fr; gap: 40px; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    header { padding: 20px; }
+    .main-container { padding: 20px; }
+}
+
+/* Стили для расширенного архива */
+.archive-section {
+    margin-bottom: 80px;
+}
+
+.archive-category-title {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    color: var(--text-dark);
+}
+
+.archive-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.archive-item {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.archive-item:hover {
+    transform: translateY(-4px);
+}
+
+.archive-item img {
+    width: 100%;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+    background-color: #eaeaea;
+    margin-bottom: 12px;
+}
+
+.archive-item-meta {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .archive-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Кнопка возврата в архив */
+.secondary-button {
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    color: var(--text-dark);
+    border: 1px solid var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.secondary-button:hover {
+    background: #eaeaea;
+}
+
+/* Стили для страницы контактов (Обо мне) */
+#about-page {
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-card {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    background: white;
+    border: 1px solid var(--border-color);
+    padding: 50px 40px;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 24px auto;
+    background-color: #eaeaea;
+    border: 1px solid var(--border-color);
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+.profile-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.profile-bio {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 34px;
+    text-align: justify;
+}
+
+.profile-contacts-grid {
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
+
+.contact-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    font-size: 13px;
+    border-bottom: 1px dotted var(--border-color);
+}
+
+.contact-row:last-child {
+    border-bottom: none;
+}
+
+.contact-label {
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.contact-value {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.contact-value:hover {
+    color: #0066cc;
+}
+
+/* Обновление сетки под нечетное количество карточек хедера */
+@media (min-width: 1025px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
