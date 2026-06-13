@@ -19,51 +19,41 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Навигация */
-/* Обновленные стили хедера и логотипа */
+/* --- ХЕДЕР И НАВИГАЦИЯ (ДЕСКТОП) --- */
 header {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
-    padding: 20px 15px;
+    padding: 25px 40px;
     border-bottom: 1px solid var(--border-color);
-    gap: 15px;
+    background: #fff;
 }
 
 .logo-block {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 100%;
+    align-items: flex-start;
 }
 
 .logo-main {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.15em;
     color: var(--text-dark);
-    /* Запрещаем перенос отдельных букв, разрешаем только один аккуратный перенос по словам */
     white-space: nowrap; 
-    word-break: keep-all;
 }
 
 .logo-sub {
     font-size: 10px;
     letter-spacing: 0.05em;
     color: var(--text-muted);
-    margin-top: 5px;
-    /* На мобильных субтитры тоже будут в одну строку или аккуратно по словам */
-    word-break: keep-all;
+    margin-top: 4px;
 }
 
 nav {
     display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
+    gap: 30px;
 }
 
 nav a {
@@ -72,100 +62,17 @@ nav a {
     letter-spacing: 0.1em;
     text-decoration: none;
     color: var(--text-dark);
-}
-
-/* Оптимизация отображения тяжелых изображений */
-.photo-frame img,
-.grid-thumb,
-.archive-item img {
-    /* Подсказываем браузеру оптимизировать отрисовку при изменении масштаба */
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: quality;
-    /* Защита от деформации */
-    object-fit: cover; 
-}
-
-/* МЕДИА-ЗАПРОСЫ ДЛЯ МОБИЛЬНЫХ (Включая Pixel 9) */
-@media (max-width: 768px) {
-    .logo-main {
-        /* Чуть-чуть уменьшаем размер шрифта, чтобы фраза «É t u d e s  u r b a i n e s» */
-        /* гарантированно помещалась в ширину экрана Pixel 9 без лишних переносов */
-        font-size: 16px; 
-        letter-spacing: 0.12em;
-    }
-
-    .logo-sub {
-        font-size: 9px;
-    }
-
-    /* Переводим главную витрину в аккуратную вертикальную стопку по одной карточке */
-    .gallery-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-        padding: 0 10px;
-    }
-
-    /* Корректируем пропорции карточек на мобилке */
-    .grid-thumb {
-        height: 240px !important;
-    }
-
-    /* Главный split-screen на мобильном превращается в последовательные блоки */
-    .hero-section {
-        grid-template-columns: 1fr !important;
-        gap: 25px !important;
-    }
-
-    .photo-frame img {
-        aspect-ratio: 3/2;
-        height: auto;
-    }
-
-    /* Адаптируем карточку "Обо мне" */
-    .profile-card {
-        padding: 30px 20px !important;
-        margin: 0 10px;
-    }
-}
-
-.logo-block {
-    text-align: center;
-    flex-grow: 1;
-}
-
-.logo-main {
-    font-size: 28px;
-    font-weight: 300;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-}
-
-.logo-sub {
-    font-size: 13px;
-    font-style: italic;
-    color: var(--text-muted);
-    margin-top: 4px;
-    letter-spacing: 0.05em;
-}
-
-nav a {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    text-decoration: none;
-    color: var(--text-dark);
-    margin-left: 30px;
     font-weight: 500;
 }
 
-/* Главный контейнер сетки */
+/* --- ОСНОВНОЙ КОНТЕЙНЕР --- */
 .main-container {
     max-width: 1600px;
     margin: 0 auto;
     padding: 60px;
 }
 
-/* Продуктовый блок (Split Screen) */
+/* --- СЕКЦИЯ ЗАКАЗА (SPLIT SCREEN) --- */
 .hero-section {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
@@ -178,6 +85,7 @@ nav a {
     background-color: #eaeaea;
     position: relative;
     overflow: hidden;
+    border: 1px solid var(--border-color);
 }
 
 .photo-frame img {
@@ -185,9 +93,10 @@ nav a {
     display: block;
     object-fit: cover;
     transition: transform 0.5s ease;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: quality;
 }
 
-/* Контентная правая панель */
 .info-panel {
     position: sticky;
     top: 40px;
@@ -217,7 +126,7 @@ nav a {
     text-align: justify;
 }
 
-/* Выбор формата */
+/* ФОРМАТЫ И КНОПКИ */
 .format-selector {
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
@@ -266,7 +175,6 @@ nav a {
     color: #aaa;
 }
 
-/* Кнопка действия */
 .cta-button {
     width: 100%;
     padding: 20px;
@@ -285,16 +193,37 @@ nav a {
     opacity: 0.9;
 }
 
-/* Сетка превью (Дропы) */
+.secondary-button {
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    color: var(--text-dark);
+    border: 1px solid var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.secondary-button:hover {
+    background: #eaeaea;
+}
+
+/* --- ГЛАВНАЯ ВИТРИНА ДРОПОВ (ДЕСКТОП) --- */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Меняем 3 на 4 */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 40px;
     border-top: 1px solid var(--border-color);
     padding-top: 60px;
+    width: 100%;
 }
 
 .grid-item {
+    display: flex;
+    flex-direction: column;
     cursor: pointer;
 }
 
@@ -303,24 +232,21 @@ nav a {
     aspect-ratio: 4/3;
     background-color: #eaeaea;
     margin-bottom: 16px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: quality;
 }
 
 .grid-meta {
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
-@media (max-width: 1024px) {
-    .hero-section { grid-template-columns: 1fr; gap: 40px; }
-    .gallery-grid { grid-template-columns: 1fr; }
-    header { padding: 20px; }
-    .main-container { padding: 20px; }
-}
-
-/* Стили для расширенного архива */
+/* --- РАСШИРЕННЫЙ ПОЛНЫЙ АРХИВ --- */
 .archive-section {
     margin-bottom: 80px;
 }
@@ -357,6 +283,7 @@ nav a {
     object-fit: cover;
     background-color: #eaeaea;
     margin-bottom: 12px;
+    border: 1px solid var(--border-color);
 }
 
 .archive-item-meta {
@@ -366,32 +293,7 @@ nav a {
     color: var(--text-muted);
 }
 
-@media (max-width: 768px) {
-    .archive-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Кнопка возврата в архив */
-.secondary-button {
-    width: 100%;
-    padding: 15px;
-    background: transparent;
-    color: var(--text-dark);
-    border: 1px solid var(--text-dark);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-size: 11px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.secondary-button:hover {
-    background: #eaeaea;
-}
-
-/* Стили для страницы контактов (Обо мне) */
+/* --- СТРАНИЦА КОНТАКТОВ (О БО МНЕ) --- */
 #about-page {
     padding: 60px 0;
     display: flex;
@@ -483,9 +385,99 @@ nav a {
     color: #0066cc;
 }
 
-/* Обновление сетки под нечетное количество карточек хедера */
-@media (min-width: 1025px) {
+
+/* --- МЕДИА-ЗАПРОСЫ ДЛЯ МОБИЛЬНЫХ (ПЛАНШЕТЫ И ТЕЛЕФОНЫ, ВКЛЮЧАЯ PIXEL 9) --- */
+@media (max-width: 900px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px 15px;
+        gap: 15px;
+    }
+
+    .logo-block {
+        align-items: center;
+        width: 100%;
+    }
+
+    .logo-main {
+        white-space: normal; 
+        word-spacing: 100vw; /* Строгий перенос строго по словам Études / Urbaines */
+        font-size: 24px;
+        letter-spacing: 0.2em;
+        line-height: 1.4;
+        text-align: center;
+    }
+
+    .logo-sub {
+        font-size: 9px;
+        margin-top: 8px;
+        line-height: 1.3;
+        max-width: 280px;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    nav a {
+        font-size: 10px;
+        letter-spacing: 0.05em;
+    }
+
+    .main-container {
+        padding: 20px 15px;
+    }
+
+    .hero-section {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+        margin-bottom: 60px;
+    }
+
+    .photo-frame img {
+        height: 280px !important;
+    }
+
+    .item-title {
+        font-size: 24px;
+        margin-bottom: 16px;
+    }
+
+    .item-description {
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+    .format-selector {
+        padding: 20px 0;
+        margin-bottom: 30px;
+    }
+
+    /* Мобильная витрина: строго по одной карточке на всю ширину экрана */
     .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-template-columns: 1fr !important;
+        gap: 35px !important;
+        padding-top: 40px;
+    }
+
+    .grid-thumb {
+        height: 240px !important;
+        aspect-ratio: auto;
+    }
+
+    /* Сетка архива на мобилке: аккуратные 2 колонки */
+    .archive-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+    }
+
+    .profile-card {
+        padding: 35px 20px !important;
     }
 }
