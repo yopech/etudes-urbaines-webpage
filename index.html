@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>É T U D E S   U R B A I N E S — Limited Architectural Prints</title>
+    <style>
+        :root {
+            --bg-light: #f8f9fa;
+            --text-dark: #111111;
+            --text-muted: #767676;
+            --border-color: #e5e5e5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Навигация */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo-block {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .logo-main {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+        }
+
+        .logo-sub {
+            font-size: 13px;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-top: 4px;
+            letter-spacing: 0.05em;
+        }
+
+        nav a {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-decoration: none;
+            color: var(--text-dark);
+            margin-left: 30px;
+            font-weight: 500;
+        }
+
+        /* Главный контейнер сетки */
+        .main-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 60px;
+        }
+
+        /* Продуктовый блок (Split Screen) */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            margin-bottom: 120px;
+            align-items: start;
+        }
+
+        .photo-frame {
+            background-color: #eaeaea;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        /* Контентная правая панель */
+        .info-panel {
+            position: sticky;
+            top: 40px;
+        }
+
+        .catalog-index {
+            font-size: 12px;
+            font-variant-numeric: tabular-nums;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            letter-spacing: 0.1em;
+        }
+
+        .item-title {
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .item-description {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 40px;
+            text-align: justify;
+        }
+
+        /* Выбор формата */
+        .format-selector {
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        .selector-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .options-group {
+            display: flex;
+            gap: 16px;
+        }
+
+        .format-btn {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            background: white;
+            font-size: 13px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+
+        .format-btn:hover, .format-btn.active {
+            border-color: var(--text-dark);
+            background: var(--text-dark);
+            color: white;
+        }
+
+        .format-btn span {
+            display: block;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .format-btn:hover span, .format-btn.active span {
+            color: #aaa;
+        }
+
+        /* Кнопка действия */
+        .cta-button {
+            width: 100%;
+            padding: 20px;
+            background: var(--text-dark);
+            color: white;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .cta-button:hover {
+            opacity: 0.9;
+        }
+
+        /* Сетка превью (Дропы) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 60px;
+        }
+
+        .grid-item {
+            cursor: pointer;
+        }
+
+        .grid-thumb {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background-color: #eaeaea;
+            margin-bottom: 16px;
+        }
+
+        .grid-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-section { grid-template-columns: 1fr; gap: 40px; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            header { padding: 20px; }
+            .main-container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div style="font-size: 11px; letter-spacing: 0.1em; color: var(--text-muted);">MOW / VOL. 1</div>
+        <div class="logo-block">
+            <div class="logo-main">É t u d e s   u r b a i n e s</div>
+            <div class="logo-sub">ограниченная серия архитектурной фотографии</div>
+        </div>
+        <nav>
+            <a href="#collection">Коллекции</a>
+            <a href="#services">Дизайнерам</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        
+        <section class="hero-section">
+            <div class="photo-frame">
+                <img src="P1050803.jpg" alt="Тбилиси. Банк Грузии.">
+            </div>
+            
+            <div class="info-panel">
+                <div class="catalog-index">01 / 15 — SERIES №1: BRUTAL & FORM</div>
+                <h1 class="item-title">Геометрия формы.<br>Тбилиси.</h1>
+                <p class="item-description">
+                    Études urbaines представляет кураторский взгляд на культовую бруталистскую архитектуру Тбилиси. Жесткие тектонические блоки, чистая симметрия и контрастный бирюзовый акцент на фоне глубокого неба. Уникальная оптика исследователя городской среды превращает масштабное монументальное здание в чистый интерьерный арт-объект. Лимитированный тираж предпечатной подготовки под премиальный крупный формат.
+                </p>
+                
+                <div class="format-selector">
+                    <div class="selector-title">Доступные форматы исполнения:</div>
+                    <div class="options-group">
+                        <button class="format-btn">A2 <span>50 × 70 см</span></button>
+                        <button class="format-btn">A1 <span>70 × 100 см</span></button>
+                        <button class="format-btn active">A0 <span>100 × 140 см</span></button>
+                    </div>
+                </div>
+                
+                <button class="cta-button" onclick="alert('Заявка отправлена. Менеджер свяжется для уточнения параметров оформления под ключ.')">Оформить под ключ</button>
+            </div>
+        </section>
+
+        <section class="gallery-grid" id="collection">
+            <div class="grid-item">
+                <div class="grid-thumb" style="background: url('пост 1.jpg') center/cover no-repeat;"></div>
+                <div class="grid-meta">
+                    <span>Космай [Сербия]</span>
+                    <span style="color: var(--text-muted);">Серия Brutal</span>
+                </div>
+            </div>
+            <div class="grid-item">
+                <div class="grid-thumb" style="background: url('IMG_20260306_104846_943.jpg') center/cover no-repeat;"></div>
+                <div class="grid-meta">
+                    <span>Сити в тумане [Москва]</span>
+                    <span style="color: var(--text-muted);">Серия Neon</span>
+                </div>
+            </div>
+            <div class="grid-item">
+                <div class="grid-thumb" style="background: url('PA111668.jpg') center/cover no-repeat;"></div>
+                <div class="grid-meta">
+                    <span>Панорама дворца [Царицыно]</span>
+                    <span style="color: var(--text-muted);">Серия Atmosphere</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
