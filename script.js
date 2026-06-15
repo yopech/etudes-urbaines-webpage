@@ -250,24 +250,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const carouselContainer = document.getElementById('hero-carousel');
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
     
     if (carouselContainer) {
         carouselContainer.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
         }, { passive: true });
         
         carouselContainer.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
             handleSwipe();
         }, { passive: true });
     }
     
     function handleSwipe() {
         if (currentImages.length <= 1) return;
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
+        const swipeThreshold = 40; // Чуть более чувствительный порог для свайпа
+        const diffX = touchStartX - touchEndX;
+        const diffY = touchStartY - touchEndY;
+        
+        // Свайп засчитывается только если горизонтальный жест явно преобладает над вертикальным скроллом
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > swipeThreshold) {
+            if (diffX > 0) {
                 goToSlide(currentImageIndex + 1); // свайп влево -> следующий
             } else {
                 goToSlide(currentImageIndex - 1); // свайп вправо -> предыдущий
