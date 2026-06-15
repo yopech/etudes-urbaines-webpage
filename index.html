@@ -25,8 +25,21 @@
     <div class="main-container">
         
         <section class="hero-section" id="main-hero">
-            <div class="photo-frame">
-                <img src="assets/IMG_20260525_011725_166.jpg" alt="ВДНХ фонтан.">
+            <div class="photo-frame carousel-container" id="hero-carousel">
+                <div class="carousel-track" id="carousel-track">
+                    <div class="carousel-slide active">
+                        <img src="assets/IMG_20260525_011725_166.jpg" alt="ВДНХ фонтан.">
+                    </div>
+                </div>
+                <button class="carousel-btn prev-btn" id="carousel-prev" aria-label="Предыдущий слайд">
+                    <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                </button>
+                <button class="carousel-btn next-btn" id="carousel-next" aria-label="Следующий слайд">
+                    <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </button>
+                <div class="carousel-dots" id="carousel-dots">
+                    <div class="carousel-dot active" data-index="0"></div>
+                </div>
             </div>
             
             <div class="info-panel">
