@@ -1,368 +1,139 @@
-const catalogData = {
-    vdnh_fountain: {
-        index: '08 / 15 — SERIES №3: ATMOSPHERE & HERITAGE',
-        title: 'ВДНХ. Фонтан.<br>Атмосфера.',
-        description: 'Сложная динамика водного потока на фоне монументальной купольной архитектуры ВДНХ. Контраст летящих брызг и статичного величия наследия ушедшей эпохи. Уникальная оптика исследователя городской среды превращает масштабное монументальное здание в чистый интерьерный арт-объект.',
-        images: ['assets/IMG_20260525_011725_166.jpg', 'assets/vdnh_mockup.png'],
-        alt: 'ВДНХ фонтан.'
-    },
-    kosmaj: {
-        index: '02 / 15 — SERIES №1: BRUTAL & FORM',
-        title: 'Монумент Космай.<br>Сербия.',
-        description: 'Бескомпромиссная геометрия югославского брутализма в зимней меланхолии. Монолитная бетонная звезда, уходящая в туманное небо, избавляет пространство от лишнего визуального шума. Графичный и сильный кадр, который идеально держит плоскость стены.',
-        images: ['assets/пост 1.jpg', 'assets/kosmaj_mockup.png'],
-        alt: 'Сербия. Монумент Космай.'
-    },
-    tsaritsyno: {
-        index: '04 / 15 — SERIES №3: ATMOSPHERE & HERITAGE',
-        title: 'Панорама дворца.<br>Царицыно.',
-        description: 'Классическое архитектурное наследие, переосмысленное через строгую графику. Осенняя меланхолия и монументальный силуэт царицынской псевдоготики, очищенные от цветового шума с помощью глубокой черно-белой контрастности.',
-        images: ['assets/PA111668.jpg'],
-        alt: 'Москва. Царицыно.'
-    },
-    tbilisi: {
-        index: '01 / 15 — SERIES №1: BRUTAL & FORM',
-        title: 'Геометрия формы.<br>Тбилиси.',
-        description: 'Études urbaines представляет кураторский взгляд на культовую бруталистскую архитектуру Тбилиси. Жесткие тектонические блоки, чистая симметрия и контрастный бирюзовый акцент на фоне глубокого неба.',
-        images: ['assets/P1050803.jpg', 'assets/tbilisi_mockup.png'],
-        alt: 'Тбилиси. Банк Грузии.'
-    },
-    city: {
-        index: '03 / 15 — SERIES №2: CYBER & NEON',
-        title: 'Сити в тумане.<br>Москва.',
-        description: 'Кинематографичный ночной урбанизм в духе Бегущего по лезвию. Плавная дуга эстакады на переднем переднем плане задает глубокую динамику кадра, направляя взгляд к высоткам, растворяющимся в густом холодном тумане.',
-        images: ['assets/IMG_20260306_104846_943.jpg'],
-        alt: 'Москва. Сити в тумане.'
-    },
-    kosmaj_r2: {
-        index: '02Б / 15 — SERIES №1: BRUTAL & FORM',
-        title: 'Космай. Ракурс 2.<br>Сербия.',
-        description: 'Второй взгляд на геометрию монумента. Более детальный акцент на стыках бетонных плит и уходящих вверх направляющих линиях.',
-        images: ['assets/IMG_20260104_201002_128.jpg'],
-        alt: 'Монумент Космай. Ракурс 2.'
-    },
-    kosmaj_r3: {
-        index: '02В / 15 — SERIES №1: BRUTAL & FORM',
-        title: 'Космай. Ракурс 3.<br>Сербия.',
-        description: 'Контрастный архитектурный план бруталистского наследия. Очищенная от контекста форма, превращающая монумент в чистый абстрактный паттерн.',
-        images: ['assets/пост 2.jpg'],
-        alt: 'Монумент Космай. Ракурс 3.'
-    },
-    panelka: {
-        index: '05 / 15 — SERIES №1: BRUTAL & FORM',
-        title: 'Панелька с вопросом.<br>Урбанизм.',
-        description: 'Исследование ритма типовой жилой застройки постсоветского пространства. Геометрия оконных рам, игра света и тени.',
-        images: ['assets/PB100206-3.jpg', 'assets/panelka_mockup.png'],
-        alt: 'Панелька с вопросом.'
-    },
-    circular_house: {
-        index: '06 / 15 — SERIES №1: BRUTAL & FORM',
-        title: 'Circular House.<br>Архитектура.',
-        description: 'Уникальная круговая панорама жилого массива. Архитектурный эксперимент советского модернизма, зафиксированный в вечернем освещении.',
-        images: ['assets/P1012089.jpg'],
-        alt: 'Circular house.'
-    },
-    red_city: {
-        index: '07 / 15 — SERIES №2: CYBER & NEON',
-        title: 'Красный Сити.<br>Киберпанк.',
-        description: 'Агрессивный, глубокий неоновый спектр ночного мегаполиса. Отражения, стекло, высотные доминанты и насыщенный красный тон.',
-        images: ['assets/IMG_20260306_104817_033.jpg'],
-        alt: 'Красный сити.'
-    },
-    tsaritsyno_p2: {
-        index: '04Б / 15 — SERIES №3: ATMOSPHERE & HERITAGE',
-        title: 'Панорама дворца. Р2.<br>Царицыно.',
-        description: 'Второй ракурс исторического ансамбля в Царицыно. Фокус на проработке кирпичной кладки и узорах готических оконных арок.',
-        images: ['assets/PA111724.jpg', 'assets/tsaritsyno_p2_mockup.png'],
-        alt: 'Панорама дворца. Ракурс 2.'
-    },
-    vdnh_tower: {
-        index: '09 / 15 — SERIES №3: ATMOSPHERE & HERITAGE',
-        title: 'Останкинская башня.<br>ВДНХ.',
-        description: 'Графичный силуэт телебашни, пробивающий предзакатное небо. Кадр выстроен через естественную рамку парковой зелени.',
-        images: ['assets/IMG_20260525_163640_186.jpg'],
-        alt: 'ВДНХ Останкинская башня.'
-    }
-};
+'use strict';
 
-let currentArtTitle = 'ВДНХ. Фонтан. Атмосфера';
+(() => {
+  const { works, sizes, dimensions, formatNumber, formatDimensions, formatPrice, orderText } = PrintCatalog;
+  const $ = (selector) => document.querySelector(selector);
+  const state = { work: null, size: 'small', preview: 'print' };
+  const homeTitle = document.title;
+  const homeDescription = $('meta[name="description"]').content;
+  let previousHash = '';
+  let copyVersion = 0;
 
-function sendLeadToTelegram() {
-    const botToken = '8678397591:AAGj-5YIw4ITiLsMpgJW4PVbeyJtKyqX17c';
-    const chatId = '1000351665';
+  function card(work, index) {
+    const link = document.createElement('a');
+    link.className = 'art-card';
+    link.href = `#work/${work.id}`;
+    link.innerHTML = `<div class="art-image-wrap ${work.height > work.width ? 'portrait' : ''}"><span class="art-card-number" aria-hidden="true">0${index + 1}</span><img src="assets/web/${work.id}-800.jpg" srcset="assets/web/${work.id}-800.jpg 800w, assets/web/${work.id}-1280.jpg 1280w" sizes="(max-width: 420px) 90vw, 44vw" width="${work.width}" height="${work.height}" alt="${work.alt}" loading="lazy" decoding="async"><span class="image-error" hidden>Фотография не загрузилась. Откройте карточку работы.</span></div><div class="art-card-meta"><div><h2 class="art-card-title">${work.title}</h2><p class="art-card-location">${work.location}</p></div><p class="art-card-price">от ≈ ${formatPrice(sizes.small.price)}<span>без рамы</span></p></div>`;
+    const img = link.querySelector('img');
+    img.addEventListener('error', () => { img.hidden = true; link.querySelector('.image-error').hidden = false; });
+    return link;
+  }
+  works.forEach((work, index) => $('#catalog-grid').append(card(work, index)));
+  $('#catalog-grid img').loading = 'eager';
+  $('#catalog-grid img').fetchPriority = 'high';
 
-    const nameInput = document.getElementById('client-name');
-    const contactInput = document.getElementById('client-contact');
-    const btn = document.getElementById('submit-btn');
-
-    if (!nameInput || !contactInput || !btn) return;
-
-    const name = nameInput.value.trim();
-    const contact = contactInput.value.trim();
-    
-    const activeBtn = document.querySelector('.format-btn.active');
-    let activeFormat = 'Не выбран';
-    if (activeBtn) {
-        activeFormat = activeBtn.innerText.split('\n')[0].trim();
-    }
-
-    if (!name || !contact) {
-        alert('Пожалуйста, заполните оба поля, чтобы мы могли связаться с вами.');
-        return;
-    }
-
-    btn.innerText = 'ОТПРАВКА...';
-    btn.disabled = true;
-
-    const message = `🔔 *Новый лид [ÉTUDES URBAINES]*\n\n👤 *Имя:* ${name}\n📱 *Контакт:* ${contact}\n🖼 *Арт:* ${currentArtTitle}\n📐 *Формат:* ${activeFormat}`;
-
-    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-    
-    fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: 'Markdown' })
-    })
-    .then(response => {
-        if (response.ok) {
-            document.getElementById('order-form-container').innerHTML = `
-                <div style="padding: 20px; background: #e6f4ea; color: #137333; text-align: center; font-size: 14px; font-weight: 500; letter-spacing: 0.05em;">
-                    ЗАЯВКА ПРИНЯТА.<br><span style="font-size: 12px; font-weight: 400;">Мы свяжемся с вами для примерки арта в интерьер.</span>
-                </div>
-            `;
-        } else {
-            return response.json().then(err => { throw new Error(JSON.stringify(err)); });
-        }
-    })
-    .catch(error => {
-        alert('Произошла ошибка при отправке.');
-        btn.innerText = 'ОФОРМИТЬ ПОД КЛЮЧ';
-        btn.disabled = false;
+  function updatePreview() {
+    $('#preview-stage').dataset.finish = state.preview;
+    document.querySelectorAll('[data-preview]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.preview === state.preview)));
+    const hasMargins = dimensions(state.work, state.size).margin > 0.1;
+    $('#preview-caption').textContent = state.preview === 'print'
+      ? `Визуализация отпечатка на листе. ${hasMargins ? 'Белые поля — часть бумаги. ' : ''}Рама не входит в заказ.`
+      : 'Визуализация. Пример оформления. Рама и паспарту не входят в заказ.';
+  }
+  function updateSize() {
+    const work = state.work;
+    const layout = dimensions(work, state.size);
+    document.querySelectorAll('[data-size]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.size === state.size)));
+    $('#image-dimensions').textContent = `Изображение ≈ ${formatDimensions(layout.imageWidth, layout.imageHeight)} см. Лист ${formatDimensions(layout.sheetWidth, layout.sheetHeight)} см.`;
+    $('#margin-note').textContent = layout.margin > 0.1 ? `Белые поля ${layout.marginAxis}, примерно по ${formatNumber(layout.margin)} см. Это часть листа, не паспарту.` : 'Кадр практически совпадает с пропорциями листа. Макет согласуем перед печатью.';
+    $('#sheet-caption').textContent = `Лист ${formatDimensions(layout.sheetWidth, layout.sheetHeight)} см`;
+    $('#work-price').textContent = `≈ ${formatPrice(sizes[state.size].price)}`;
+    $('#order-message').value = orderText(work, state.size, `${location.href.split('#')[0]}#work/${work.id}`);
+    $('#copy-status').textContent = '';
+    $('#copy-order').textContent = 'Скопировать текст';
+    copyVersion += 1;
+  }
+  function showWork(work) {
+    const changed = state.work?.id !== work.id;
+    state.work = work;
+    if (changed) { state.size = 'small'; state.preview = 'print'; }
+    $('#works').hidden = true;
+    $('#work-page').hidden = false;
+    $('#work-number').textContent = `0${works.indexOf(work) + 1} / 04`;
+    $('#work-title').textContent = work.title;
+    $('#work-location').textContent = work.location;
+    $('#work-description').textContent = work.description;
+    document.title = `${work.title} — авторский отпечаток | Études urbaines`;
+    $('meta[name="description"]').content = `${work.title}. ${work.description} Фотопечать на Silk, без рамы, два размера.`;
+    const img = $('#work-image');
+    img.hidden = false;
+    $('#preview-stage .image-error').hidden = true;
+    img.alt = work.alt; img.width = work.width; img.height = work.height;
+    img.srcset = `assets/web/${work.id}-800.jpg 800w, assets/web/${work.id}-1280.jpg 1280w, assets/web/${work.id}-2000.jpg 2000w`;
+    img.sizes = '(max-width: 760px) 85vw, 49vw';
+    img.src = `assets/web/${work.id}-1280.jpg`;
+    const portrait = work.height > work.width;
+    $('#print-sheet').classList.toggle('portrait', portrait);
+    $('#preview-frame').classList.toggle('portrait', portrait);
+    $('#size-options').replaceChildren();
+    Object.keys(sizes).forEach((key) => {
+      const layout = dimensions(work, key);
+      const button = document.createElement('button');
+      button.type = 'button'; button.className = 'size-button'; button.dataset.size = key;
+      button.innerHTML = `${formatDimensions(layout.sheetWidth, layout.sheetHeight)}<span>≈ ${formatPrice(sizes[key].price)}</span>`;
+      button.addEventListener('click', () => { state.size = key; updateSize(); });
+      $('#size-options').append(button);
     });
-}
-
-let currentImages = [];
-let currentImageIndex = 0;
-
-function goToSlide(index) {
-    if (currentImages.length <= 1) return;
-    
-    if (index < 0) {
-        currentImageIndex = currentImages.length - 1;
-    } else if (index >= currentImages.length) {
-        currentImageIndex = 0;
+    $('#related-grid').replaceChildren(...works.filter((item) => item.id !== work.id).map((item) => card(item, works.indexOf(item))));
+    updateSize(); updatePreview();
+  }
+  function route() {
+    const hash = location.hash || '#works';
+    const match = /^#work\/([a-z0-9-]+)$/.exec(hash);
+    const work = match && works.find((item) => item.id === match[1]);
+    if ($('#image-dialog').open) $('#image-dialog').close();
+    if (work) {
+      showWork(work); window.scrollTo({ top: 0, behavior: 'instant' }); $('#work-title').focus({ preventScroll: true });
     } else {
-        currentImageIndex = index;
-    }
-    
-    const track = document.getElementById('carousel-track');
-    const dotsContainer = document.getElementById('carousel-dots');
-    if (!track || !dotsContainer) return;
-    
-    // Обновляем класс active для слайдов
-    const slides = track.querySelectorAll('.carousel-slide');
-    slides.forEach((slide, idx) => {
-        if (idx === currentImageIndex) {
-            slide.classList.add('active');
-        } else {
-            slide.classList.remove('active');
+      $('#works').hidden = false; $('#work-page').hidden = true;
+      document.title = homeTitle; $('meta[name="description"]').content = homeDescription;
+      const destinations = { '#works': 'works', '#print': 'print', '#author': 'author', '#designers': 'designers', '#main': 'main' };
+      const target = destinations[hash];
+      if (!target) history.replaceState(null, '', '#works');
+      requestAnimationFrame(() => {
+        if (target === 'works' || !target) window.scrollTo({ top: 0, behavior: 'instant' });
+        else document.getElementById(target).scrollIntoView({ behavior: 'instant' });
+        if (previousHash.startsWith('#work/') && (!target || target === 'works')) {
+          const returnLink = document.querySelector(`#catalog-grid a[href="${previousHash}"]`);
+          if (returnLink) returnLink.focus({ preventScroll: true });
         }
+        previousHash = location.hash || '#works';
+      });
+    }
+    document.querySelectorAll('nav a').forEach((link) => {
+      const selected = link.hash === hash || (work && link.hash === '#works');
+      if (selected) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current');
     });
-    
-    // Обновляем класс active для точек
-    const dots = dotsContainer.querySelectorAll('.carousel-dot');
-    dots.forEach((dot, idx) => {
-        if (idx === currentImageIndex) {
-            dot.classList.add('active');
-        } else {
-            dot.classList.remove('active');
-        }
-    });
-}
-
-function selectArt(artKey) {
-    const data = catalogData[artKey];
-    if (data) {
-        document.querySelector('.catalog-index').innerText = data.index;
-        document.querySelector('.item-title').innerHTML = data.title;
-        document.querySelector('.item-description').innerText = data.description;
-        
-        currentArtTitle = data.title.replace('<br>', ' ');
-        
-        const track = document.getElementById('carousel-track');
-        const dotsContainer = document.getElementById('carousel-dots');
-        const container = document.getElementById('hero-carousel');
-        
-        if (track && dotsContainer && container) {
-            currentImages = data.images || [];
-            currentImageIndex = 0;
-            
-            // Генерируем слайды
-            track.innerHTML = currentImages.map((imgUrl, idx) => `
-                <div class="carousel-slide ${idx === 0 ? 'active' : ''}">
-                    <img src="${imgUrl}" alt="${data.alt} - Слайд ${idx + 1}">
-                </div>
-            `).join('');
-            
-            // Генерируем точки индикаторов
-            dotsContainer.innerHTML = currentImages.map((_, idx) => `
-                <div class="carousel-dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></div>
-            `).join('');
-            
-            // Навешиваем клик на точки
-            const dots = dotsContainer.querySelectorAll('.carousel-dot');
-            dots.forEach(dot => {
-                dot.addEventListener('click', () => {
-                    const idx = parseInt(dot.getAttribute('data-index'), 10);
-                    goToSlide(idx);
-                });
-            });
-            
-            // Скрываем стрелки и точки, если картинка всего одна
-            if (currentImages.length <= 1) {
-                container.classList.add('single-slide');
-            } else {
-                container.classList.remove('single-slide');
-            }
-        }
+    if (work) previousHash = hash;
+  }
+  document.querySelectorAll('[data-preview]').forEach((button) => button.addEventListener('click', () => { state.preview = button.dataset.preview; updatePreview(); }));
+  $('#work-image').addEventListener('error', () => { $('#work-image').hidden = true; $('#preview-stage .image-error').hidden = false; });
+  $('#work-image').addEventListener('load', () => { $('#work-image').hidden = false; $('#preview-stage .image-error').hidden = true; });
+  $('#copy-order').addEventListener('click', async () => {
+    const version = copyVersion;
+    try {
+      await navigator.clipboard.writeText($('#order-message').value);
+      if (version === copyVersion) $('#copy-status').textContent = 'Текст скопирован. Вставьте его в чат с Игорем и отправьте.';
+    } catch {
+      if (version !== copyVersion) return;
+      $('#order-message').focus(); $('#order-message').select();
+      $('#copy-status').textContent = 'Автоматическое копирование недоступно. Текст выделен — скопируйте его вручную.';
     }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Настройка кнопок карусели
-    const prevBtn = document.getElementById('carousel-prev');
-    const nextBtn = document.getElementById('carousel-next');
-    
-    if (prevBtn) {
-        prevBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            goToSlide(currentImageIndex - 1);
-        });
-    }
-    if (nextBtn) {
-        nextBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            goToSlide(currentImageIndex + 1);
-        });
-    }
-    
-    // Поддержка свайпов на мобильных устройствах
-    const carouselContainer = document.getElementById('hero-carousel');
-    let touchStartX = 0;
-    let touchEndX = 0;
-    let touchStartY = 0;
-    let touchEndY = 0;
-    
-    if (carouselContainer) {
-        carouselContainer.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-            touchStartY = e.changedTouches[0].screenY;
-        }, { passive: true });
-        
-        carouselContainer.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            touchEndY = e.changedTouches[0].screenY;
-            handleSwipe();
-        }, { passive: true });
-    }
-    
-    function handleSwipe() {
-        if (currentImages.length <= 1) return;
-        const swipeThreshold = 40; // Чуть более чувствительный порог для свайпа
-        const diffX = touchStartX - touchEndX;
-        const diffY = touchStartY - touchEndY;
-        
-        // Свайп засчитывается только если горизонтальный жест явно преобладает над вертикальным скроллом
-        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > swipeThreshold) {
-            if (diffX > 0) {
-                goToSlide(currentImageIndex + 1); // свайп влево -> следующий
-            } else {
-                goToSlide(currentImageIndex - 1); // свайп вправо -> предыдущий
-            }
-        }
-    }
-
-    // 2. Форматы
-    const formatButtons = document.querySelectorAll('.format-btn');
-    formatButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            formatButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-
-    // 3. Клик по карточкам витрины
-    const gridItems = document.querySelectorAll('.grid-item');
-    gridItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const artKey = this.getAttribute('data-art');
-            selectArt(artKey);
-            document.getElementById('back-to-archive-btn').style.display = 'none';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    });
-
-    // 4. Управление навигацией
-    const logoClickable = document.getElementById('logo-clickable');
-    const navCollections = document.getElementById('nav-collections');
-    const navArchive = document.getElementById('nav-archive');
-    const navContacts = document.getElementById('nav-contacts');
-    const backToArchiveBtn = document.getElementById('back-to-archive-btn');
-    
-    const mainHero = document.getElementById('main-hero');
-    const mainShowcase = document.getElementById('main-showcase');
-    const fullArchivePage = document.getElementById('full-archive-page');
-    const aboutPage = document.getElementById('about-page');
-
-    function showMainView() {
-        mainHero.style.display = 'grid';
-        mainShowcase.style.display = 'grid';
-        fullArchivePage.style.display = 'none';
-        aboutPage.style.display = 'none';
-        backToArchiveBtn.style.display = 'none';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function showArchiveView() {
-        mainHero.style.display = 'none';
-        mainShowcase.style.display = 'none';
-        fullArchivePage.style.display = 'block';
-        aboutPage.style.display = 'none';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function showAboutView() {
-        mainHero.style.display = 'none';
-        mainShowcase.style.display = 'none';
-        fullArchivePage.style.display = 'none';
-        aboutPage.style.display = 'flex';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    logoClickable.addEventListener('click', showMainView);
-    navCollections.addEventListener('click', (e) => { e.preventDefault(); showMainView(); });
-    navArchive.addEventListener('click', (e) => { e.preventDefault(); showArchiveView(); });
-    navContacts.addEventListener('click', (e) => { e.preventDefault(); showAboutView(); });
-    backToArchiveBtn.addEventListener('click', (e) => { e.preventDefault(); showArchiveView(); });
-
-    // Клик по фото внутри архива
-    const archiveItems = document.querySelectorAll('.archive-item');
-    archiveItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const artKey = this.getAttribute('data-art');
-            
-            mainHero.style.display = 'grid';
-            mainShowcase.style.display = 'grid';
-            fullArchivePage.style.display = 'none';
-            aboutPage.style.display = 'none';
-            backToArchiveBtn.style.display = 'block'; // Включаем кнопку назад в архив
-            
-            selectArt(artKey);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    });
-    
-    // Инициализируем карусель для первого арта при загрузке
-    selectArt('vdnh_fountain');
-});
+  });
+  const dialog = $('#image-dialog');
+  $('#preview-stage').addEventListener('click', () => {
+    $('#zoom-title').textContent = `${state.work.title} / ${state.work.location}`;
+    $('#zoom-error').hidden = true; $('#zoom-image').hidden = false;
+    $('#zoom-image').alt = state.work.alt;
+    $('#zoom-image').src = `assets/web/${state.work.id}-2000.jpg`;
+    dialog.showModal(); document.body.classList.add('modal-open'); $('#close-zoom').focus();
+  });
+  $('#zoom-image').addEventListener('error', () => { $('#zoom-image').hidden = true; $('#zoom-error').hidden = false; });
+  $('#close-zoom').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (event) => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
+  dialog.addEventListener('close', () => { document.body.classList.remove('modal-open'); if (!$('#work-page').hidden) $('#preview-stage').focus({ preventScroll: true }); });
+  $('.author-portrait img').addEventListener('error', (event) => { event.target.hidden = true; });
+  $('#current-year').textContent = new Date().getFullYear();
+  window.addEventListener('hashchange', route);
+  route();
+})();

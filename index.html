@@ -1,214 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ÉTUDES URBAINES — Limited Architectural Prints</title>
-    <link rel="stylesheet" href="style.css?v=1.2">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f0">
+  <title>Études urbaines — фотографии Игоря Печорского</title>
+  <meta name="description" content="Четыре фотографии из Барселоны, Тбилиси, Москвы и Сербии. Авторские отпечатки на Fujicolor Silk, два размера, подпись автора. Без рамы, с доставкой в тубусе.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Études urbaines — фотографии Игоря Печорского">
+  <meta property="og:description" content="Город, архитектура и люди. Четыре работы, которые можно заказать в печати. Без рамы, с подписью автора.">
+  <meta property="og:image" content="https://yopech.github.io/etudes-urbaines-webpage/assets/web/rescuer-03-1280.jpg">
+  <meta property="og:image:alt" content="Спасатель у пляжа Барселоны и отражение города в окне вышки 03">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css?v=2">
+  <script src="catalog.js?v=2" defer></script>
+  <script src="script.js?v=2" defer></script>
 </head>
 <body>
-
-    <header>
-        <div style="font-size: 11px; letter-spacing: 0.1em; color: var(--text-muted);">MOW / VOL. 1</div>
-        <div class="logo-block" id="logo-clickable" style="cursor: pointer;">
-            <div class="logo-main">Études urbaines</div>
-            <div class="logo-sub">ограниченная серия архитектурной фотографии</div>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header class="site-header">
+    <a class="brand" href="#works" aria-label="Études urbaines — к работам"><span class="brand-name">Études urbaines<span class="brand-dot">.</span></span><span class="brand-caption">Фотографии Игоря Печорского</span></a>
+    <nav aria-label="Основная навигация"><a href="#works">Работы <span class="nav-count">04</span></a><a href="#print">О печати и доставке</a><a href="#author">Автор и контакты</a></nav>
+  </header>
+  <main id="main" tabindex="-1">
+    <section id="works" class="collection page-width" aria-labelledby="collection-title">
+      <div class="collection-intro"><div><p class="eyebrow">Études urbaines / Городские этюды</p><h1 id="collection-title">Фотографии<br>Игоря Печорского</h1></div><div class="intro-note"><p>Город, архитектура и люди. <br>Четыре работы, которые можно<br class="desktop-break"> заказать в печати.</p><a class="text-link" href="#print">Как устроен отпечаток <span aria-hidden="true">↗</span></a></div></div>
+      <div class="collection-line"><span>Коллекция / 01—04</span><span>Два размера · Без рамы</span></div>
+      <div id="catalog-grid" class="catalog-grid"></div>
+      <noscript><p class="notice">Для выбора размера включите JavaScript. Посмотреть фотографии можно по ссылкам: <a href="assets/web/rescuer-03-2000.jpg">Спасатель 03</a>, <a href="assets/web/tbilisi-2000.jpg">Тбилиси</a>, <a href="assets/web/city-2000.jpg">Сити в тумане</a>, <a href="assets/web/kosmaj-2000.jpg">Космай</a>. По вопросам печати <a href="https://t.me/yopech">напишите Игорю в Telegram</a>.</p></noscript>
+    </section>
+    <section id="work-page" class="page-width work-page" hidden aria-labelledby="work-title">
+      <div class="work-topline"><a href="#works" class="text-link">← Все работы</a><span id="work-number" class="eyebrow"></span></div>
+      <div class="work-layout">
+        <div class="work-visual">
+          <div class="preview-controls" role="group" aria-label="Пример оформления"><button type="button" data-preview="print" aria-pressed="true">Отпечаток</button><button type="button" data-preview="oak" aria-pressed="false">Дуб + паспарту</button><button type="button" data-preview="metal" aria-pressed="false">Металл + паспарту</button></div>
+          <button type="button" id="preview-stage" class="preview-stage" data-finish="print" aria-label="Увеличить фотографию"><span id="preview-frame" class="preview-frame"><span class="preview-mat"><span id="print-sheet" class="print-sheet"><img id="work-image" alt="" decoding="async"></span></span></span><span class="zoom-hint" aria-hidden="true">↗ Посмотреть ближе</span><span class="image-error" hidden>Не удалось загрузить фотографию. Попробуйте обновить страницу.</span></button>
+          <p id="preview-caption" class="preview-caption"></p><div class="visual-footnote"><span>Полный кадр, без обрезки</span><span id="sheet-caption"></span></div>
         </div>
-        <nav>
-            <a href="#" id="nav-collections">Коллекции</a>
-            <a href="#" id="nav-archive" style="color: #0066cc;">Полный Архив</a>
-            <a href="#services">Дизайнерам</a>
-            <a href="#" id="nav-contacts">Контакты</a>
-        </nav>
-    </header>
-
-    <div class="main-container">
-        
-        <section class="hero-section" id="main-hero">
-            <div class="photo-frame carousel-container" id="hero-carousel">
-                <div class="carousel-track" id="carousel-track">
-                    <div class="carousel-slide active">
-                        <img src="assets/IMG_20260525_011725_166.jpg" alt="ВДНХ фонтан.">
-                    </div>
-                </div>
-                <button class="carousel-btn prev-btn" id="carousel-prev" aria-label="Предыдущий слайд">
-                    <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-                </button>
-                <button class="carousel-btn next-btn" id="carousel-next" aria-label="Следующий слайд">
-                    <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                </button>
-                <div class="carousel-dots" id="carousel-dots">
-                    <div class="carousel-dot active" data-index="0"></div>
-                </div>
-            </div>
-            
-            <div class="info-panel">
-                <div class="catalog-index">08 / 15 — SERIES №3: ATMOSPHERE & HERITAGE</div>
-                <h1 class="item-title">ВДНХ. Фонтан.<br>Атмосфера.</h1>
-                <p class="item-description">
-                    Сложная динамика водного потока на фоне монументальной купольной архитектуры ВДНХ. Контраст летящих брызг и статичного величия наследия ушедшей эпохи. Уникальная оптика исследователя городской среды превращает масштабное монументальное здание в чистый интерьерный арт-объект. Лимитированный тираж предпечатной подготовки под премиальный крупный формат.
-                </p>
-                
-                <div class="format-selector">
-                    <div class="selector-title">Доступные форматы исполнения:</div>
-                    <div class="options-group">
-                        <button class="format-btn">A2 <span>50 × 70 см</span></button>
-                        <button class="format-btn">A1 <span>70 × 100 см</span></button>
-                        <button class="format-btn active">A0 <span>100 × 140 см</span></button>
-                    </div>
-                </div>
-                
-                <div id="order-form-container" style="margin-top: 30px;">
-                    <div style="margin-bottom: 12px;">
-                        <input type="text" id="client-name" placeholder="ВАШЕ ИМЯ" style="width: 100%; padding: 15px; border: 1px solid var(--border-color); font-size: 13px; outline: none;">
-                    </div>
-                    <div style="margin-bottom: 20px;">
-                        <input type="text" id="client-contact" placeholder="ТЕЛЕФОН ИЛИ ТЕЛЕГРАМ" style="width: 100%; padding: 15px; border: 1px solid var(--border-color); font-size: 13px; outline: none;">
-                    </div>
-                    
-                    <button id="back-to-archive-btn" class="secondary-button" style="display: none; margin-bottom: 12px;">← Вернуться в архив</button>
-                    
-                    <button class="cta-button" id="submit-btn" onclick="sendLeadToTelegram()">Оформить под ключ</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="gallery-grid" id="main-showcase">
-            <div class="grid-item" data-art="vdnh_fountain">
-                <div class="grid-thumb" style="background: url('assets/IMG_20260525_011725_166.jpg') center/cover no-repeat;"></div>
-                <div class="grid-meta">
-                    <span>ВДНХ фонтан [Москва]</span>
-                    <span style="color: var(--text-muted);">Серия Atmosphere</span>
-                </div>
-            </div>
-            <div class="grid-item" data-art="kosmaj">
-                <div class="grid-thumb" style="background: url('assets/пост 1.jpg') center/cover no-repeat;"></div>
-                <div class="grid-meta">
-                    <span>Космай [Сербия]</span>
-                    <span style="color: var(--text-muted);">Серия Brutal</span>
-                </div>
-            </div>
-            <div class="grid-item" data-art="tsaritsyno">
-                <div class="grid-thumb" style="background: url('assets/PA111668.jpg') center/cover no-repeat;"></div>
-                <div class="grid-meta">
-                    <span>Панорама дворца [Царицыно]</span>
-                    <span style="color: var(--text-muted);">Серия Atmosphere</span>
-                </div>
-            </div>
-            <div class="grid-item" data-art="tbilisi">
-                <div class="grid-thumb" style="background: url('assets/P1050803.jpg') center/cover no-repeat;"></div>
-                <div class="grid-meta">
-                    <span>Геометрия формы [Тбилиси]</span>
-                    <span style="color: var(--text-muted);">Серия Brutal</span>
-                </div>
-            </div>
-            <div class="grid-item" data-art="city">
-                <div class="grid-thumb" style="background: url('assets/IMG_20260306_104846_943.jpg') center/cover no-repeat;"></div>
-                <div class="grid-meta">
-                    <span>Сити в тумане [Москва]</span>
-                    <span style="color: var(--text-muted);">Серия Neon</span>
-                </div>
-            </div>
-        </section>
-
-        <div id="full-archive-page" style="display: none;">
-            <div class="archive-section">
-                <h2 class="archive-category-title">SERIES №1: BRUTAL & FORM</h2>
-                <div class="archive-grid">
-                    <div class="archive-item" data-art="tbilisi">
-                        <img src="assets/P1050803.jpg" alt="Тбилиси">
-                        <div class="archive-item-meta">Геометрия формы (Тбилиси)</div>
-                    </div>
-                    <div class="archive-item" data-art="kosmaj">
-                        <img src="assets/пост 1.jpg" alt="Космай ракурс 1">
-                        <div class="archive-item-meta">Монумент Космай — Ракурс 1</div>
-                    </div>
-                    <div class="archive-item" data-art="kosmaj_r2">
-                        <img src="assets/IMG_20260104_201002_128.jpg" alt="Космай ракурс 2">
-                        <div class="archive-item-meta">Монумент Космай — Ракурс 2</div>
-                    </div>
-                    <div class="archive-item" data-art="kosmaj_r3">
-                        <img src="assets/пост 2.jpg" style="filter: contrast(1.15);" alt="Космай ракурс 3">
-                        <div class="archive-item-meta">Монумент Космай — Ракурс 3</div>
-                    </div>
-                    <div class="archive-item" data-art="panelka">
-                        <img src="assets/PB100206-3.jpg" alt="Панелька с вопросом">
-                        <div class="archive-item-meta">Панелька с вопросом</div>
-                    </div>
-                    <div class="archive-item" data-art="circular_house">
-                        <img src="assets/P1012089.jpg" alt="Circular house">
-                        <div class="archive-item-meta">Circular house</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="archive-section">
-                <h2 class="archive-category-title">SERIES №2: CYBER & NEON</h2>
-                <div class="archive-grid">
-                    <div class="archive-item" data-art="city">
-                        <img src="assets/IMG_20260306_104846_943.jpg" alt="Сити в тумане">
-                        <div class="archive-item-meta">Сити в тумане (Москва)</div>
-                    </div>
-                    <div class="archive-item" data-art="red_city">
-                        <img src="assets/IMG_20260306_104817_033.jpg" alt="Красный сити">
-                        <div class="archive-item-meta">Красный сити</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="archive-section">
-                <h2 class="archive-category-title">SERIES №3: ATMOSPHERE & HERITAGE</h2>
-                <div class="archive-grid">
-                    <div class="archive-item" data-art="tsaritsyno">
-                        <img src="assets/PA111668.jpg" alt="Панорама дворца">
-                        <div class="archive-item-meta">Панорама дворца (Царицыно)</div>
-                    </div>
-                    <div class="archive-item" data-art="tsaritsyno_p2">
-                        <img src="assets/PA111724.jpg" alt="Панорама дворца ракурс 2">
-                        <div class="archive-item-meta">Панорама дворца — Ракурс 2</div>
-                    </div>
-                    <div class="archive-item" data-art="vdnh_fountain">
-                        <img src="assets/IMG_20260525_011725_166.jpg" alt="ВДНХ фонтан">
-                        <div class="archive-item-meta">ВДНХ фонтан</div>
-                    </div>
-                    <div class="archive-item" data-art="vdnh_tower">
-                        <img src="assets/IMG_20260525_163640_186.jpg" alt="ВДНХ Останкинская башня">
-                        <div class="archive-item-meta">ВДНХ Останкинская башня</div>
-                    </div>
-                </div>
-            </div>
+        <div class="work-info">
+          <p id="work-location" class="eyebrow"></p><h1 id="work-title" tabindex="-1"></h1><p class="work-author">Фотография Игоря Печорского</p><p id="work-description" class="work-description"></p>
+          <fieldset class="size-fieldset"><legend>Размер листа, см</legend><div id="size-options" class="size-options"></div></fieldset>
+          <p id="image-dimensions" class="size-note"></p><p id="margin-note" class="size-note margin-note"></p>
+          <div class="price-line"><span id="work-price" class="work-price"></span><span class="product-label">Без рамы</span></div>
+          <p class="small-text price-note">Предварительная цена. Итоговую сумму и срок подтвержу до оплаты. Доставка отдельно.</p>
+          <dl class="product-facts"><div><dt>Бумага</dt><dd>Fujicolor Crystal Archive DPII Silk, шелковистая фактура. Фотопечать на Durst.</dd></div><div><dt>В комплекте</dt><dd>Отпечаток, подпись автора на обороте, сертификат с названием и размером работы. Защитная упаковка и тубус включены.</dd></div><div><dt>Изготовление</dt><dd>Ориентир — 5–7 рабочих дней после оплаты и согласования макета. Затем доставка в ваш город.</dd></div></dl>
+          <a id="order-link" href="https://t.me/yopech" target="_blank" rel="noopener noreferrer" class="button button-primary">Обсудить заказ в Telegram <span aria-hidden="true">↗</span></a>
+          <p class="small-text order-help">Напишите мне, какую работу и размер выбрали. Готовый текст можно скопировать ниже.</p>
+          <details class="order-details"><summary>Текст для сообщения</summary><label class="sr-only" for="order-message">Параметры выбранной работы</label><textarea id="order-message" readonly rows="8" spellcheck="false"></textarea><button id="copy-order" type="button" class="button button-secondary">Скопировать текст</button><p id="copy-status" class="small-text" role="status" aria-live="polite"></p></details>
+          <a class="secondary-contact" href="tel:+79126201728">Или позвоните: +7 (912) 620-17-28</a>
+          <div class="work-questions">
+            <details><summary>Как подобрать раму?</summary><p>Отпечаток можно оформить в багетной мастерской под ваш интерьер. Дуб и металл на этой странице — примеры. Рама и паспарту не входят в заказ. Для оформления используйте размеры листа и изображения, указанные выше.</p></details>
+            <details><summary>Будет ли цвет таким же, как на экране?</summary><p>Оттенки зависят от яркости экрана и освещения. У бумаги нет подсветки, поэтому отпечаток может выглядеть иначе. Если важен конкретный оттенок, обсудим его перед печатью.</p></details>
+            <details><summary>Что делать, если посылка повреждена?</summary><p>Напишите мне и приложите фотографии отпечатка и упаковки. Разберёмся с заменой.</p></details>
+          </div>
         </div>
-
-        <div id="about-page" style="display: none;">
-            <div class="profile-card">
-                <div class="profile-avatar">
-                    <img src="assets/avatar.jpg" alt="Игорь Печорский" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'">
-                </div>
-                <h2 class="profile-name">Игорь Печорский</h2>
-                <div class="profile-title">стрит–фотограф, архитектурный фотограф</div>
-                <p class="profile-bio">
-                    Исследую тектонику городского пространства, бруталистские объемы и скрытую геометрию мегаполисов. Каждая работа – это фиксация архитектурной формы, очищенной от визуального шума, подготовленная специально под широкоформатную интерьерную печать премиального уровня.
-                </p>
-                
-                <div class="profile-contacts-grid">
-                    <div class="contact-row">
-                        <span class="contact-label">Telegram</span>
-                        <a href="https://t.me/yopech" target="_blank" class="contact-value">@yopech</a>
-                    </div>
-                    <div class="contact-row">
-                        <span class="contact-label">Телефон</span>
-                        <a href="tel:+79126201728" class="contact-value">+7 (912) 620–17–28</a>
-                    </div>
-                    <div class="contact-row">
-                        <span class="contact-label">Instagram</span>
-                        <a href="https://instagram.com/yooopech" target="_blank" class="contact-value">@yooopech</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <script src="script.js?v=1.2"></script>
+      </div>
+      <div class="more-works"><h2>Другие работы</h2><div id="related-grid" class="related-grid"></div></div>
+    </section>
+    <section id="print" class="print-section" aria-labelledby="print-title"><div class="page-width">
+      <div class="section-heading"><p class="eyebrow">От файла до стены</p><h2 id="print-title">Что вы получите</h2><p>Отпечаток, который можно оформить <br>так, как подходит вашему дому.</p></div>
+      <div class="print-facts">
+        <article><span class="fact-number">01 / Печать</span><h3>Фотобумага Silk</h3><p>Печать на Durst, Fujicolor Crystal Archive DPII Silk. У бумаги мелкая шелковистая фактура. Перед отправкой я проверяю каждый отпечаток.</p></article>
+        <article><span class="fact-number">02 / Комплект</span><h3>С подписью автора</h3><p>Подпись на обороте и сертификат с названием фотографии, автором и размером. Раму вы выбираете отдельно. Цифровой файл в покупку не входит.</p></article>
+        <article><span class="fact-number">03 / Упаковка</span><h3>В защитном тубусе</h3><p>Отпечаток отправляется свёрнутым, с защитным межслойным материалом. Упаковка включена в цену. Доставка рассчитывается отдельно.</p></article>
+      </div>
+      <div class="how-to-order"><h3>Как заказать</h3><ol><li><span>Выберите работу и размер.</span> Напишите мне в Telegram — можно отправить готовый текст из карточки.</li><li><span>Согласуем детали.</span> Подтвержу макет, сумму с доставкой, срок и способ оплаты.</li><li><span>Подготовлю отпечаток.</span> Ориентир до отправки — 5–7 рабочих дней после оплаты и согласования макета. Срок доставки зависит от города.</li></ol></div>
+      <div class="delivery-note"><p>Перед оплатой обсудим условия получения, обмена и возврата. Если отпечаток приехал повреждённым, пришлите фотографии работы и упаковки — разберёмся с заменой.</p><p>После получения берите отпечаток за края. За помощью с распрямлением и оформлением можно обратиться в багетную мастерскую.</p></div>
+    </div></section>
+    <section id="author" class="author-section page-width" aria-labelledby="author-title">
+      <div class="author-portrait"><img src="assets/web/author.jpg" width="480" height="480" loading="lazy" alt="Игорь Печорский"><span class="portrait-fallback" aria-hidden="true">ИП</span></div>
+      <div class="author-copy"><p class="eyebrow">За камерой</p><h2 id="author-title">Игорь Печорский</h2><p>Снимаю архитектуру и уличную жизнь. В этой подборке — фотографии из Москвы, Тбилиси, Барселоны и Сербии. Каждую работу печатаю под заказ и проверяю перед отправкой.</p><div class="author-links"><a href="https://t.me/yopech" target="_blank" rel="noopener noreferrer" class="text-link">Написать в Telegram ↗</a><a href="tel:+79126201728">+7 (912) 620-17-28</a></div></div>
+      <aside class="designer-note" id="designers"><p class="eyebrow">Дизайнерам</p><p>Если подбираете фотографии для проекта, напишите мне. Пришлю размеры и помогу выбрать работы.</p><a href="https://t.me/yopech" target="_blank" rel="noopener noreferrer" class="text-link">Обсудить проект ↗</a></aside>
+    </section>
+  </main>
+  <footer class="site-footer page-width"><span>© <span id="current-year">2026</span> Игорь Печорский</span><a href="#works">Études urbaines</a><span>Авторская фотография</span></footer>
+  <dialog id="image-dialog" aria-labelledby="zoom-title"><div class="dialog-toolbar"><h2 id="zoom-title"></h2><button type="button" id="close-zoom" aria-label="Закрыть увеличенную фотографию">Закрыть <span aria-hidden="true">×</span></button></div><div class="zoom-image-wrap"><img id="zoom-image" alt=""><p id="zoom-error" hidden>Не удалось загрузить фотографию. Закройте просмотр и попробуйте снова.</p></div><p class="zoom-description">Фотография целиком. Поля выбранного листа показаны в карточке работы.</p></dialog>
 </body>
 </html>

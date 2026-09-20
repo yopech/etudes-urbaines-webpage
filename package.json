@@ -1,0 +1,17 @@
+{
+  "name": "etudes-urbaines",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Author photographic prints — static website",
+  "engines": { "node": ">=22.12.0" },
+  "scripts": {
+    "start": "node scripts/serve.cjs",
+    "images": "node scripts/prepare-images.cjs",
+    "test": "node --test tests/catalog.test.cjs",
+    "test:browser": "node tests/browser.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1",
+    "sharp": "0.35.4"
+  }
+}
