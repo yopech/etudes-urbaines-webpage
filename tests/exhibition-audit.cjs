@@ -72,7 +72,7 @@ const base = process.env.EXHIBITION_URL || "http://127.0.0.1:4173/";
       await page.setViewportSize({ width, height: 844 });
       await page.locator("#etude-1 [data-order]").scrollIntoViewIfNeeded();
       const buttons = await page
-        .locator("#etude-1 .placard-actions button")
+        .locator("#etude-1 .neon-cta-btn")
         .evaluateAll((els) => els.map((e) => e.getBoundingClientRect().height));
       assert(buttons.every((height) => height >= 44));
       assert(

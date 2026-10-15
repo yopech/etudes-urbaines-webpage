@@ -11,6 +11,13 @@
     soundEnabled = true,
     version = 0;
   let context, master;
+  let decodedIgnition;
+  const ignitionData = fetch("assets/audio/power-on.mp3")
+    .then((response) => {
+      if (!response.ok) throw new Error("Audio unavailable");
+      return response.arrayBuffer();
+    })
+    .catch(() => null);
   const sources = new Set();
   stage.style.setProperty("--ignition", `${duration}s`);
   function stopAudio() {
@@ -80,6 +87,31 @@
     connectSource(source, gain);
     source.start(time);
   }
+  async function recordedIgnition(token) {
+    try {
+      const data = await ignitionData;
+      if (!data) throw new Error("Audio unavailable");
+      decodedIgnition ||= context.decodeAudioData(data.slice(0));
+      const buffer = await decodedIgnition;
+      if (token !== version || !active || !soundEnabled || document.hidden)
+        return;
+      const source = context.createBufferSource();
+      source.buffer = buffer;
+      const gain = context.createGain();
+      const now = context.currentTime;
+      const fadeLength = Math.min(1.5, buffer.duration * 0.4);
+      gain.gain.setValueAtTime(0.8, now);
+      gain.gain.setValueAtTime(0.8, now + buffer.duration - fadeLength);
+      gain.gain.linearRampToValueAtTime(0, now + buffer.duration);
+      connectSource(source, gain);
+      source.start(now);
+      source.stop(now + buffer.duration);
+    } catch {
+      if (token === version && active)
+        document.querySelector("#notice").textContent =
+          "Дополнительный звук не загрузился. Основной звук работает.";
+    }
+  }
   async function audio(on, ignition, token) {
     if (!soundEnabled || document.hidden) return;
     try {
@@ -97,6 +129,7 @@
       master.gain.setValueAtTime(0.22, now);
       if (ignition) mechanicalClick(now);
       if (!on) return;
+      if (ignition) void recordedIgnition(token);
       if (ignition && !reduced.matches) {
         // Match the four visible strikes: 5%, 35%, 57%, 65%.
         [0.05, 0.35, 0.57, 0.65].forEach((fraction, i) =>

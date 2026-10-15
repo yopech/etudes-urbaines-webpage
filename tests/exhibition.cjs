@@ -37,7 +37,7 @@ const output = path.resolve(__dirname, '../test-results');
       await section.scrollIntoViewIfNeeded();
       await page.waitForTimeout(250);
       const lamp = await section.locator('.spotlight').boundingBox();
-      assert(lamp.width >= 220 && lamp.width <= 340);
+      assert(lamp.width >= 200 && lamp.width <= 310);
       await page.screenshot({ path: path.join(output, `exhibition-${engine}-work-${i}.png`) });
       assert(await section.locator('.photo-window img').evaluate(el => el.complete && el.naturalWidth > 0));
       const mask = await page.locator('.concrete-wall').evaluate(el => getComputedStyle(el).maskImage);

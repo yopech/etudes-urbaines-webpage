@@ -314,7 +314,7 @@
   function inspect(work, trigger) {
     currentWork = work;
     document.querySelector("#inspection-title").textContent =
-      `ÉTUDE 0${work.id} / ${work.title} · ${work.place}`;
+      `0${work.id} / 04 · ${work.title} · ${work.place}`;
     loadInspectionPhoto();
     image.alt = work.artwork.querySelector(".photo-window img").alt;
     paper.classList.remove("is-zoomed");
@@ -367,7 +367,7 @@
     size.value = drafts.get(work.id)?.size || "small";
     for (const option of size.options) {
       const d = catalog.dimensions(catalog.works[work.id - 1], option.value);
-      option.textContent = `${catalog.formatDimensions(d.sheetWidth, d.sheetHeight)} см — ≈ ${catalog.formatPrice(catalog.sizes[option.value].price)}`;
+      option.textContent = `${catalog.formatDimensions(d.sheetWidth, d.sheetHeight)} см – ≈ ${catalog.formatPrice(catalog.sizes[option.value].price)}`;
     }
     order.querySelector(`input[value="${edition}"]`).checked = true;
     document.querySelector("#copy-status").textContent = "";
@@ -409,12 +409,15 @@
   function syncEdition(work) {
     const framed =
       work.section.querySelector("input:checked").value === "frame";
-    work.section.querySelector("[data-price]").textContent = framed
-      ? "Оформление по запросу"
-      : `от ≈ ${catalog.formatPrice(catalog.sizes.small.price)}`;
-    work.section.querySelector("[data-order]").firstChild.textContent = framed
-      ? "Обсудить оформление "
-      : "Запросить отпечаток ";
+    work.section.querySelector("[data-price]").textContent =
+      `от ≈ ${catalog.formatPrice(catalog.sizes.small.price)}`;
+    work.section.querySelector(".frame-note").hidden = !framed;
+    work.section
+      .querySelector("[data-order]")
+      .setAttribute(
+        "aria-label",
+        `${framed ? "Обсудить оформление" : "Заказать отпечаток"} «${work.title}»`,
+      );
   }
   works.forEach((work) =>
     work.section
@@ -423,6 +426,43 @@
         syncEdition(work);
       }),
   );
+  const illuminatedCards = new Set();
+  const syncButtonLight = () =>
+    works.forEach((work) => {
+      work.section
+        .querySelector(".neon-cta-btn")
+        .classList.toggle(
+          "is-in-view",
+          open && illuminatedCards.has(work.placard),
+        );
+    });
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.35)
+            illuminatedCards.add(entry.target);
+          else illuminatedCards.delete(entry.target);
+        }
+        syncButtonLight();
+      },
+      { rootMargin: "-18% 0px -18% 0px", threshold: 0.35 },
+    );
+    works.forEach((work) => observer.observe(work.placard));
+  } else {
+    works.forEach((work) => illuminatedCards.add(work.placard));
+  }
+  window.addEventListener("exhibitionpower", syncButtonLight);
+  document.querySelectorAll(".neon-cta-btn").forEach((button) => {
+    const failed = () => {
+      button.classList.add("asset-failed");
+      button.querySelector(".cta-fallback").hidden = false;
+    };
+    button.querySelectorAll("img").forEach((image) => {
+      image.addEventListener("error", failed);
+      if (image.complete && !image.naturalWidth) failed();
+    });
+  });
   const directRoute = location.hash.match(
     /^#(?:etude-([1-4])|(view|order)\/([1-4]))$/,
   );
