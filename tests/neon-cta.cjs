@@ -16,6 +16,13 @@ const fs = require("node:fs");
     await page.waitForTimeout(2600);
     assert.equal(await page.locator(".neon-cta-btn").count(), 4);
     assert.equal(await page.locator(".placard-actions").count(), 0);
+    const switchStyle=await page.locator('.switch-stage').evaluate(el=>{const s=getComputedStyle(el);return{width:s.width,height:s.height,mask:s.maskImage}});
+    assert.deepEqual(switchStyle,{width:'140px',height:'170px',mask:'none'});
+    const numerals=await page.locator('.placard-title').first().evaluate(el=>getComputedStyle(el).fontVariantNumeric);
+    assert(numerals.includes('lining-nums')&&numerals.includes('tabular-nums'));
+    await page.evaluate(()=>window.scrollTo({top:100,behavior:'instant'}));
+    await page.waitForTimeout(350);
+    assert.equal(await page.locator('.scroll-cue').evaluate(el=>getComputedStyle(el).opacity),'0');
     for (let n = 1; n <= 4; n++) {
       const card = page.locator(`#etude-${n} .museum-placard`);
       await card.evaluate((el) =>
@@ -51,10 +58,11 @@ const fs = require("node:fs");
       );
       await page.mouse.move(1400, 20);
       await card.locator("input[value=frame]").check();
-      assert(await card.locator(".frame-note").isVisible());
+      assert.equal(await card.locator(".frame-note").count(),0);
       assert((await card.locator("[data-price]").innerText()).includes("5"));
       await button.click();
       await page.locator("#order").waitFor({ state: "visible" });
+      assert(await page.locator('#order-frame-note').isVisible());
       await page.keyboard.press("Escape");
       await page.locator("#order").waitFor({ state: "hidden" });
     }

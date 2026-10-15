@@ -99,13 +99,14 @@
       source.buffer = buffer;
       const gain = context.createGain();
       const now = context.currentTime;
-      const fadeLength = Math.min(1.5, buffer.duration * 0.4);
+      const playbackLength = Math.min(2, buffer.duration);
+      const fadeLength = Math.min(1.5, playbackLength);
       gain.gain.setValueAtTime(0.8, now);
-      gain.gain.setValueAtTime(0.8, now + buffer.duration - fadeLength);
-      gain.gain.linearRampToValueAtTime(0, now + buffer.duration);
+      gain.gain.setValueAtTime(0.8, now + playbackLength - fadeLength);
+      gain.gain.linearRampToValueAtTime(0, now + playbackLength);
       connectSource(source, gain);
       source.start(now);
-      source.stop(now + buffer.duration);
+      source.stop(now + playbackLength);
     } catch {
       if (token === version && active)
         document.querySelector("#notice").textContent =

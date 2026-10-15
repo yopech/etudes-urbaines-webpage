@@ -76,7 +76,7 @@
       const light = 0.25 + 0.8 * proximity;
       const lampY = reduced.matches
         ? 0
-        : Math.max(-16, Math.min(35, -offset * 0.28));
+        : Math.max(-16, Math.min(35, -offset * 0.1));
       const artY = reduced.matches ? 0 : offset * 0.05;
       const section = works[i].section;
       section.style.setProperty("--light", light.toFixed(3));
@@ -96,7 +96,7 @@
       );
       const mouthX = g.right ? width - g.lampWidth * 0.27 : g.lampWidth * 0.27;
       const mouthY =
-        g.height * 0.02 + g.lampWidth * (1024 / 1536) * 0.36 + lampY;
+        g.height * 0.08 + g.lampWidth * (1024 / 1536) * 0.36 + lampY;
       const dx = g.x - mouthX,
         dy = artCenterY - mouthY;
       section.style.setProperty("--beam-x", `${mouthX}px`);
@@ -147,6 +147,8 @@
       masks.join(",") || "linear-gradient(transparent,transparent)",
     );
     body.classList.toggle("in-hall", scroll > hero.offsetHeight * 0.72);
+    cue.classList.toggle("is-scrolled", scroll > 80);
+    cue.tabIndex = scroll > 80 ? -1 : 0;
     navigation.forEach((link, i) =>
       link.setAttribute("aria-current", String(i === closest)),
     );
@@ -352,8 +354,11 @@
       geometry.imageHeight,
     );
     document.querySelector("#order-summary").textContent =
-      `Лист ${dimensions} см · изображение ≈ ${imageDimensions} см, без обрезки. Отпечаток ≈ ${price} ₽. ${framed ? "Рама и сборка рассчитываются отдельно." : "Защитная упаковка и тубус включены."} Доставка отдельно. Срок подтвердит автор.`;
-    orderMessage = `Здравствуйте, Игорь! Хочу заказать «${currentWork.title}» (${currentWork.place}).\nЛист: ${dimensions} см, с сохранением пропорций оригинала.\nFujicolor Crystal Archive DPII Silk.\nКомплектация: ${framed ? "в кастомной раме, прошу рассчитать оформление и сборку" : "только отпечаток, без рамы и паспарту, доставка в тубусе"}.\nПредварительная цена отпечатка: ≈ ${price} ₽.\nПодскажите итоговую стоимость, срок и доставку.`;
+      `Лист ${dimensions} см · изображение ≈ ${imageDimensions} см, без обрезки. Отпечаток ${price} ₽. ${framed ? "Рама и сборка рассчитываются отдельно." : "Защитная упаковка и тубус включены."} Доставка отдельно. Срок подтвердит автор.`;
+    const frameInfo = document.querySelector("#order-frame-note");
+    frameInfo.hidden = !framed;
+    frameInfo.textContent = `${["Тёплое дерево", "Морёный дуб", "Шлифованная сталь", "Кованая сталь"][currentWork.id - 1]} – экспозиционный вариант. Стоимость рамы рассчитывается отдельно.`;
+    orderMessage = `Здравствуйте, Игорь! Хочу заказать «${currentWork.title}» (${currentWork.place}).\nЛист: ${dimensions} см, с сохранением пропорций оригинала.\nFujicolor Crystal Archive DPII Silk.\nКомплектация: ${framed ? "в кастомной раме, прошу рассчитать оформление и сборку" : "только отпечаток, без рамы и паспарту, доставка в тубусе"}.\nЦена отпечатка: ${price} ₽.\nПодскажите итоговую стоимость, срок и доставку.`;
     document.querySelector("#telegram-order").href =
       `https://t.me/yopech?text=${encodeURIComponent(orderMessage)}`;
   }
@@ -367,7 +372,7 @@
     size.value = drafts.get(work.id)?.size || "small";
     for (const option of size.options) {
       const d = catalog.dimensions(catalog.works[work.id - 1], option.value);
-      option.textContent = `${catalog.formatDimensions(d.sheetWidth, d.sheetHeight)} см – ≈ ${catalog.formatPrice(catalog.sizes[option.value].price)}`;
+      option.textContent = `${catalog.formatDimensions(d.sheetWidth, d.sheetHeight)} см – ${catalog.formatPrice(catalog.sizes[option.value].price)}`;
     }
     order.querySelector(`input[value="${edition}"]`).checked = true;
     document.querySelector("#copy-status").textContent = "";
@@ -410,8 +415,7 @@
     const framed =
       work.section.querySelector("input:checked").value === "frame";
     work.section.querySelector("[data-price]").textContent =
-      `от ≈ ${catalog.formatPrice(catalog.sizes.small.price)}`;
-    work.section.querySelector(".frame-note").hidden = !framed;
+      catalog.formatPrice(catalog.sizes.small.price);
     work.section
       .querySelector("[data-order]")
       .setAttribute(

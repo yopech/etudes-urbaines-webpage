@@ -40,7 +40,7 @@
   function orderText(work, key, url) {
     const d = dimensions(work, key);
     const fields = d.margin > 0.1 ? `Белые поля ${d.marginAxis}, примерно по ${formatNumber(d.margin)} см.` : 'Изображение практически на весь лист.';
-    return `Здравствуйте, Игорь! Хочу обсудить заказ фотографии «${work.title}» (${work.location}).\nЛист: ${formatDimensions(d.sheetWidth, d.sheetHeight)} см.\nИзображение: ≈ ${formatDimensions(d.imageWidth, d.imageHeight)} см. ${fields}\nFujicolor Crystal Archive DPII Silk, без рамы и паспарту.\nПредварительная цена: ≈ ${formatPrice(sizes[key].price)}. Упаковка включена, доставка отдельно.\nПодскажите итоговую стоимость, срок и условия заказа.\n${url}`;
+    return `Здравствуйте, Игорь! Хочу обсудить заказ фотографии «${work.title}» (${work.location}).\nЛист: ${formatDimensions(d.sheetWidth, d.sheetHeight)} см.\nИзображение: ≈ ${formatDimensions(d.imageWidth, d.imageHeight)} см. ${fields}\nFujicolor Crystal Archive DPII Silk, без рамы и паспарту.\nЦена: ${formatPrice(sizes[key].price)}. Упаковка включена, доставка отдельно.\nПодскажите итоговую стоимость, срок и условия заказа.\n${url}`;
   }
   const catalog = { works, sizes, dimensions, formatNumber, formatDimensions, formatPrice, orderText };
   if (typeof module !== 'undefined' && module.exports) module.exports = catalog;

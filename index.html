@@ -7,7 +7,7 @@
     <title>Études Urbaines – ночная фотовыставка Игоря Печорского</title>
     <meta
       name="description"
-      content="Четыре фотографических этюда Игоря Печорского. Включите свет и пройдите по закрытой ночной выставке. Авторские отпечатки от 5 900 ₽."
+      content="Четыре фотографических этюда Игоря Печорского. Включите свет и пройдите по закрытой ночной выставке. Авторские отпечатки 5 900 ₽."
     />
     <link rel="preload" as="image" href="neon-off.jpg" />
     <link rel="preload" as="image" href="neon-partial.jpg" />
@@ -74,17 +74,17 @@
             disabled
           >
             <img
-              src="switch-off.jpg"
+              src="switch-off.png"
               alt=""
-              width="640"
-              height="640"
+              width="1254"
+              height="1254"
               draggable="false"
             /><img
               class="switch-on"
-              src="switch-on.jpg"
+              src="switch-on.png"
               alt=""
-              width="640"
-              height="640"
+              width="1254"
+              height="1254"
               draggable="false"
             />
           </button>
@@ -165,7 +165,7 @@
             </button>
             <article class="museum-placard">
               <p class="catalog-number">01 / 04 · <span>Барселона</span></p>
-              <h2 id="title-1">Спасатель 03</h2>
+              <h2 class="placard-title" id="title-1">Спасатель 03</h2>
               <p class="work-description">
                 Между дежурством и пляжем. Город остаётся в отражении.
               </p>
@@ -191,11 +191,7 @@
                   ></label
                 >
               </fieldset>
-              <p class="work-price" data-price>от ≈ 5 900 ₽</p>
-              <p class="frame-note" hidden>
-                Тёплое дерево – экспозиционный вариант. Стоимость рамы
-                рассчитывается отдельно.
-              </p>
+              <p class="work-price price-value" data-price>5 900 ₽</p>
               <button
                 type="button"
                 class="neon-cta-btn"
@@ -279,7 +275,7 @@
             </button>
             <article class="museum-placard">
               <p class="catalog-number">02 / 04 · <span>Тбилиси</span></p>
-              <h2 id="title-2">Тбилиси</h2>
+              <h2 class="placard-title" id="title-2">Тбилиси</h2>
               <p class="work-description">
                 Свет, цвет и угол, в котором город становится геометрией.
               </p>
@@ -303,11 +299,7 @@
                   ></label
                 >
               </fieldset>
-              <p class="work-price" data-price>от ≈ 5 900 ₽</p>
-              <p class="frame-note" hidden>
-                Морёный дуб – экспозиционный вариант. Стоимость рамы
-                рассчитывается отдельно.
-              </p>
+              <p class="work-price price-value" data-price>5 900 ₽</p>
               <button
                 type="button"
                 class="neon-cta-btn"
@@ -392,7 +384,7 @@
             </button>
             <article class="museum-placard">
               <p class="catalog-number">03 / 04 · <span>Москва</span></p>
-              <h2 id="title-3">Сити в тумане</h2>
+              <h2 class="placard-title" id="title-3">Сити в тумане</h2>
               <p class="work-description">
                 Город теряет верхние этажи. Внизу ещё движется свет.
               </p>
@@ -418,11 +410,7 @@
                   ></label
                 >
               </fieldset>
-              <p class="work-price" data-price>от ≈ 5 900 ₽</p>
-              <p class="frame-note" hidden>
-                Шлифованная сталь – экспозиционный вариант. Стоимость рамы
-                рассчитывается отдельно.
-              </p>
+              <p class="work-price price-value" data-price>5 900 ₽</p>
               <button
                 type="button"
                 class="neon-cta-btn"
@@ -506,7 +494,7 @@
             </button>
             <article class="museum-placard">
               <p class="catalog-number">04 / 04 · <span>Сербия</span></p>
-              <h2 id="title-4">Космай</h2>
+              <h2 class="placard-title" id="title-4">Космай</h2>
               <p class="work-description">
                 Бетонные лучи, зимняя тишина и память о будущем.
               </p>
@@ -530,11 +518,7 @@
                   ></label
                 >
               </fieldset>
-              <p class="work-price" data-price>от ≈ 5 900 ₽</p>
-              <p class="frame-note" hidden>
-                Кованая сталь – экспозиционный вариант. Стоимость рамы
-                рассчитывается отдельно.
-              </p>
+              <p class="work-price price-value" data-price>5 900 ₽</p>
               <button
                 type="button"
                 class="neon-cta-btn"
@@ -736,8 +720,8 @@
       <form id="order-form">
         <label class="field-label" for="order-size">Размер листа</label
         ><select id="order-size" name="size">
-          <option value="small">40 × 60 см – ≈ 5 900 ₽</option>
-          <option value="large">60 × 90 см – ≈ 9 900 ₽</option>
+          <option value="small">40 × 60 см – 5 900 ₽</option>
+          <option value="large">60 × 90 см – 9 900 ₽</option>
         </select>
         <fieldset class="order-edition">
           <legend>Комплектация</legend>
@@ -750,6 +734,7 @@
           >
         </fieldset>
         <p id="order-summary"></p>
+        <p id="order-frame-note" class="order-help" hidden></p>
         <p class="order-help">
           Откроется Telegram с подготовленным сообщением Игорю. Отправьте его,
           чтобы согласовать срок, доставку и оплату.
@@ -809,7 +794,7 @@
       </style>
       <main class="static-gallery">
         <h1>Études Urbaines</h1>
-        <p>Фотографии Игоря Печорского. Отпечатки от 5 900 ₽.</p>
+        <p>Фотографии Игоря Печорского. Отпечатки 5 900 ₽.</p>
         <img src="photo-1.jpg" alt="Спасатель 03, Барселона" /><img
           src="photo-2.jpg"
           alt="Тбилиси"

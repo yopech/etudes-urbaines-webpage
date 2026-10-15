@@ -40,7 +40,7 @@ const server = http.createServer((req, res) => {
       "favicon.svg",
     ].includes(relative) ||
     /^(neon-(off|partial|on)|switch-(off|on)|concrete-tile|photo-[1-4])\.jpg$/.test(relative) ||
-    /^(frame-[1-4]|spotlight|заказать_(off|mid|full))\.png$/.test(relative) ||
+    /^(frame-[1-4]|spotlight|switch-(off|on)|заказать_(off|mid|full))\.png$/.test(relative) ||
     /^assets\/web\/[a-z0-9-]+\.jpg$/.test(relative) ||
     /^assets\/audio\/power-on\.mp3$/.test(relative) ||
     /^assets\/(fonts|vendor)\/[a-z0-9.-]+\.(otf|ttf|txt|html|css|js)$/.test(
