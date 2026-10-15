@@ -1,81 +1,570 @@
 <!doctype html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f5f0">
-  <title>Études urbaines — фотографии Игоря Печорского</title>
-  <meta name="description" content="Четыре фотографии из Барселоны, Тбилиси, Москвы и Сербии. Авторские отпечатки на Fujicolor Silk, два размера, подпись автора. Без рамы, с доставкой в тубусе.">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ru_RU">
-  <meta property="og:title" content="Études urbaines — фотографии Игоря Печорского">
-  <meta property="og:description" content="Город, архитектура и люди. Четыре работы, которые можно заказать в печати. Без рамы, с подписью автора.">
-  <meta property="og:image" content="https://yopech.github.io/etudes-urbaines-webpage/assets/web/rescuer-03-1280.jpg">
-  <meta property="og:image:alt" content="Спасатель у пляжа Барселоны и отражение города в окне вышки 03">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=2">
-  <script src="catalog.js?v=2" defer></script>
-  <script src="script.js?v=2" defer></script>
-</head>
-<body>
-  <a class="skip-link" href="#main">Перейти к содержимому</a>
-  <header class="site-header">
-    <a class="brand" href="#works" aria-label="Études urbaines — к работам"><span class="brand-name">Études urbaines<span class="brand-dot">.</span></span><span class="brand-caption">Фотографии Игоря Печорского</span></a>
-    <nav aria-label="Основная навигация"><a href="#works">Работы <span class="nav-count">04</span></a><a href="#print">О печати и доставке</a><a href="#author">Автор и контакты</a></nav>
-  </header>
-  <main id="main" tabindex="-1">
-    <section id="works" class="collection page-width" aria-labelledby="collection-title">
-      <div class="collection-intro"><div><p class="eyebrow">Études urbaines / Городские этюды</p><h1 id="collection-title">Фотографии<br>Игоря Печорского</h1></div><div class="intro-note"><p>Город, архитектура и люди. <br>Четыре работы, которые можно<br class="desktop-break"> заказать в печати.</p><a class="text-link" href="#print">Как устроен отпечаток <span aria-hidden="true">↗</span></a></div></div>
-      <div class="collection-line"><span>Коллекция / 01—04</span><span>Два размера · Без рамы</span></div>
-      <div id="catalog-grid" class="catalog-grid"></div>
-      <noscript><p class="notice">Для выбора размера включите JavaScript. Посмотреть фотографии можно по ссылкам: <a href="assets/web/rescuer-03-2000.jpg">Спасатель 03</a>, <a href="assets/web/tbilisi-2000.jpg">Тбилиси</a>, <a href="assets/web/city-2000.jpg">Сити в тумане</a>, <a href="assets/web/kosmaj-2000.jpg">Космай</a>. По вопросам печати <a href="https://t.me/yopech">напишите Игорю в Telegram</a>.</p></noscript>
-    </section>
-    <section id="work-page" class="page-width work-page" hidden aria-labelledby="work-title">
-      <div class="work-topline"><a href="#works" class="text-link">← Все работы</a><span id="work-number" class="eyebrow"></span></div>
-      <div class="work-layout">
-        <div class="work-visual">
-          <div class="preview-controls" role="group" aria-label="Пример оформления"><button type="button" data-preview="print" aria-pressed="true">Отпечаток</button><button type="button" data-preview="oak" aria-pressed="false">Дуб + паспарту</button><button type="button" data-preview="metal" aria-pressed="false">Металл + паспарту</button></div>
-          <button type="button" id="preview-stage" class="preview-stage" data-finish="print" aria-label="Увеличить фотографию"><span id="preview-frame" class="preview-frame"><span class="preview-mat"><span id="print-sheet" class="print-sheet"><img id="work-image" alt="" decoding="async"></span></span></span><span class="zoom-hint" aria-hidden="true">↗ Посмотреть ближе</span><span class="image-error" hidden>Не удалось загрузить фотографию. Попробуйте обновить страницу.</span></button>
-          <p id="preview-caption" class="preview-caption"></p><div class="visual-footnote"><span>Полный кадр, без обрезки</span><span id="sheet-caption"></span></div>
-        </div>
-        <div class="work-info">
-          <p id="work-location" class="eyebrow"></p><h1 id="work-title" tabindex="-1"></h1><p class="work-author">Фотография Игоря Печорского</p><p id="work-description" class="work-description"></p>
-          <fieldset class="size-fieldset"><legend>Размер листа, см</legend><div id="size-options" class="size-options"></div></fieldset>
-          <p id="image-dimensions" class="size-note"></p><p id="margin-note" class="size-note margin-note"></p>
-          <div class="price-line"><span id="work-price" class="work-price"></span><span class="product-label">Без рамы</span></div>
-          <p class="small-text price-note">Предварительная цена. Итоговую сумму и срок подтвержу до оплаты. Доставка отдельно.</p>
-          <dl class="product-facts"><div><dt>Бумага</dt><dd>Fujicolor Crystal Archive DPII Silk, шелковистая фактура. Фотопечать на Durst.</dd></div><div><dt>В комплекте</dt><dd>Отпечаток, подпись автора на обороте, сертификат с названием и размером работы. Защитная упаковка и тубус включены.</dd></div><div><dt>Изготовление</dt><dd>Ориентир — 5–7 рабочих дней после оплаты и согласования макета. Затем доставка в ваш город.</dd></div></dl>
-          <a id="order-link" href="https://t.me/yopech" target="_blank" rel="noopener noreferrer" class="button button-primary">Обсудить заказ в Telegram <span aria-hidden="true">↗</span></a>
-          <p class="small-text order-help">Напишите мне, какую работу и размер выбрали. Готовый текст можно скопировать ниже.</p>
-          <details class="order-details"><summary>Текст для сообщения</summary><label class="sr-only" for="order-message">Параметры выбранной работы</label><textarea id="order-message" readonly rows="8" spellcheck="false"></textarea><button id="copy-order" type="button" class="button button-secondary">Скопировать текст</button><p id="copy-status" class="small-text" role="status" aria-live="polite"></p></details>
-          <a class="secondary-contact" href="tel:+79126201728">Или позвоните: +7 (912) 620-17-28</a>
-          <div class="work-questions">
-            <details><summary>Как подобрать раму?</summary><p>Отпечаток можно оформить в багетной мастерской под ваш интерьер. Дуб и металл на этой странице — примеры. Рама и паспарту не входят в заказ. Для оформления используйте размеры листа и изображения, указанные выше.</p></details>
-            <details><summary>Будет ли цвет таким же, как на экране?</summary><p>Оттенки зависят от яркости экрана и освещения. У бумаги нет подсветки, поэтому отпечаток может выглядеть иначе. Если важен конкретный оттенок, обсудим его перед печатью.</p></details>
-            <details><summary>Что делать, если посылка повреждена?</summary><p>Напишите мне и приложите фотографии отпечатка и упаковки. Разберёмся с заменой.</p></details>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#050507" />
+    <title>Études Urbaines — ночная фотовыставка Игоря Печорского</title>
+    <meta
+      name="description"
+      content="Четыре фотографических этюда Игоря Печорского. Включите свет и пройдите по закрытой ночной выставке. Авторские отпечатки от 5 900 ₽."
+    />
+    <link rel="preload" as="image" href="neon-off.jpg" />
+    <link rel="preload" as="image" href="neon-partial.jpg" />
+    <link rel="preload" as="image" href="neon-on.jpg" />
+    <link rel="stylesheet" href="neon.css" />
+    <link rel="stylesheet" href="exhibition.css" />
+    <script defer src="power.js"></script>
+    <script defer src="exhibition.js"></script>
+  </head>
+  <body>
+    <div class="concrete-wall" aria-hidden="true"></div>
+    <div class="neon-trail" aria-hidden="true"></div>
+    <main>
+      <section class="hero" aria-labelledby="exhibition-title">
+        <h1 class="sr-only" id="exhibition-title">
+          Études Urbaines — закрытая ночная фотовыставка Игоря Печорского
+        </h1>
+        <div class="room-reflex" aria-hidden="true"></div>
+        <div class="neon-mount">
+          <div class="neon-aura" aria-hidden="true"></div>
+          <div
+            class="neon-stage"
+            id="neon-stage"
+            role="img"
+            aria-label="Неоновая вывеска Études Urbaines"
+          >
+            <img
+              class="neon-off"
+              src="neon-off.jpg"
+              alt=""
+              width="1983"
+              height="793"
+              fetchpriority="high"
+              draggable="false"
+            />
+            <img
+              class="neon-partial"
+              src="neon-partial.jpg"
+              alt=""
+              width="1983"
+              height="793"
+              draggable="false"
+            />
+            <img
+              class="neon-on"
+              src="neon-on.jpg"
+              alt=""
+              width="1983"
+              height="793"
+              draggable="false"
+            />
           </div>
         </div>
+        <div class="switch-wrap">
+          <button
+            class="switch-stage"
+            id="breaker"
+            type="button"
+            role="switch"
+            aria-checked="false"
+            aria-label="Питание выставки"
+            aria-describedby="caption"
+            disabled
+          >
+            <img
+              src="switch-off.jpg"
+              alt=""
+              width="640"
+              height="640"
+              draggable="false"
+            /><img
+              class="switch-on"
+              src="switch-on.jpg"
+              alt=""
+              width="640"
+              height="640"
+              draggable="false"
+            />
+          </button>
+          <p class="sr-only" id="caption">Загрузка вывески…</p>
+          <p class="notice" id="notice" role="status"></p>
+        </div>
+        <a
+          class="scroll-cue"
+          href="#etude-1"
+          tabindex="-1"
+          aria-label="Перейти к первой фотографии"
+          ><span aria-hidden="true">↓</span></a
+        >
+      </section>
+      <div id="exhibition" inert aria-hidden="true">
+        <section
+          class="exhibit-section landscape light-left"
+          id="etude-1"
+          data-work="1"
+          aria-labelledby="title-1"
+        >
+          <div class="warm-pool" aria-hidden="true"></div>
+          <div class="spotlight" aria-hidden="true">
+            <img
+              src="spotlight.png"
+              alt=""
+              width="1536"
+              height="1024"
+              loading="lazy"
+            />
+          </div>
+          <div class="exhibit-layout">
+            <button
+              class="framed-artwork"
+              data-inspect="1"
+              style="--top: 28.5%; --left: 24.2%; --width: 51.6%; --height: 43%"
+              aria-label="Рассмотреть фотографию «Спасатель 03»"
+            >
+              <img
+                class="frame-image"
+                src="frame-1.png"
+                alt=""
+                width="1448"
+                height="1086"
+                loading="lazy"
+              />
+              <span class="photo-window"
+                ><img
+                  src="photo-1.jpg"
+                  alt="Спасатель в жёлтой рубашке, красный номер 03 и отражение пляжа Барселоны"
+                  loading="lazy" /><span class="glass" aria-hidden="true"></span
+              ></span>
+            </button>
+            <article class="museum-placard">
+              <p class="catalog-number">ÉTUDE 01 / 04 <span>Барселона</span></p>
+              <h2 id="title-1">Спасатель 03</h2>
+              <p class="work-description">
+                Между дежурством и пляжем. Город остаётся в отражении.
+              </p>
+              <p class="technical">
+                Fujicolor DPII Silk · Подпись автора<br />Два размера ·
+                Оформление по запросу
+              </p>
+              <fieldset class="edition-choice">
+                <legend class="sr-only">
+                  Комплектация работы «Спасатель 03»
+                </legend>
+                <label
+                  ><input
+                    type="radio"
+                    name="edition-1"
+                    value="print"
+                    checked
+                  /><span>Только отпечаток</span></label
+                >
+                <label
+                  ><input type="radio" name="edition-1" value="frame" /><span
+                    >В кастомной раме</span
+                  ></label
+                >
+              </fieldset>
+              <p class="work-price" data-price>от ≈ 5 900 ₽</p>
+              <p class="frame-note">
+                Тёплое дерево — вариант оформления. Стоимость и изготовление
+                обсуждаются отдельно.
+              </p>
+              <div class="placard-actions">
+                <button type="button" data-inspect="1">
+                  Рассмотреть вблизи <span aria-hidden="true">↗</span></button
+                ><button type="button" data-order="1">
+                  Запросить отпечаток <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section
+          class="exhibit-section landscape light-right"
+          id="etude-2"
+          data-work="2"
+          aria-labelledby="title-2"
+        >
+          <div class="warm-pool" aria-hidden="true"></div>
+          <div class="spotlight" aria-hidden="true">
+            <img
+              src="spotlight.png"
+              alt=""
+              width="1536"
+              height="1024"
+              loading="lazy"
+            />
+          </div>
+          <div class="exhibit-layout">
+            <button
+              class="framed-artwork"
+              data-inspect="2"
+              style="--top: 25%; --left: 20.2%; --width: 59.6%; --height: 50%"
+              aria-label="Рассмотреть фотографию «Тбилиси»"
+            >
+              <img
+                class="frame-image"
+                src="frame-2.png"
+                alt=""
+                width="1448"
+                height="1086"
+                loading="lazy"
+              />
+              <span class="photo-window"
+                ><img
+                  src="photo-2.jpg"
+                  alt="Светлый угловой фасад с бирюзовыми деталями под синим небом Тбилиси"
+                  loading="lazy" /><span class="glass" aria-hidden="true"></span
+              ></span>
+            </button>
+            <article class="museum-placard">
+              <p class="catalog-number">ÉTUDE 02 / 04 <span>Тбилиси</span></p>
+              <h2 id="title-2">Тбилиси</h2>
+              <p class="work-description">
+                Свет, цвет и угол, в котором город становится геометрией.
+              </p>
+              <p class="technical">
+                Fujicolor DPII Silk · Подпись автора<br />Два размера ·
+                Оформление по запросу
+              </p>
+              <fieldset class="edition-choice">
+                <legend class="sr-only">Комплектация работы «Тбилиси»</legend>
+                <label
+                  ><input
+                    type="radio"
+                    name="edition-2"
+                    value="print"
+                    checked
+                  /><span>Только отпечаток</span></label
+                >
+                <label
+                  ><input type="radio" name="edition-2" value="frame" /><span
+                    >В кастомной раме</span
+                  ></label
+                >
+              </fieldset>
+              <p class="work-price" data-price>от ≈ 5 900 ₽</p>
+              <p class="frame-note">
+                Морёный дуб — вариант оформления. Стоимость и изготовление
+                обсуждаются отдельно.
+              </p>
+              <div class="placard-actions">
+                <button type="button" data-inspect="2">
+                  Рассмотреть вблизи <span aria-hidden="true">↗</span></button
+                ><button type="button" data-order="2">
+                  Запросить отпечаток <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section
+          class="exhibit-section portrait steel light-left"
+          id="etude-3"
+          data-work="3"
+          aria-labelledby="title-3"
+        >
+          <div class="warm-pool" aria-hidden="true"></div>
+          <div class="spotlight" aria-hidden="true">
+            <img
+              src="spotlight.png"
+              alt=""
+              width="1536"
+              height="1024"
+              loading="lazy"
+            />
+          </div>
+          <div class="exhibit-layout">
+            <button
+              class="framed-artwork"
+              data-inspect="3"
+              style="--top: 23.4%; --left: 29%; --width: 42%; --height: 48.8%"
+              aria-label="Рассмотреть фотографию «Сити в тумане»"
+            >
+              <img
+                class="frame-image"
+                src="frame-3.png"
+                alt=""
+                width="1086"
+                height="1448"
+                loading="lazy"
+              />
+              <span class="photo-window"
+                ><img
+                  src="photo-3.jpg"
+                  alt="Башни Москва-Сити растворяются в тумане над эстакадой с синей подсветкой"
+                  loading="lazy" /><span class="glass" aria-hidden="true"></span
+              ></span>
+              <span class="metal-sheen" aria-hidden="true"></span>
+            </button>
+            <article class="museum-placard">
+              <p class="catalog-number">ÉTUDE 03 / 04 <span>Москва</span></p>
+              <h2 id="title-3">Сити в тумане</h2>
+              <p class="work-description">
+                Город теряет верхние этажи. Внизу ещё движется свет.
+              </p>
+              <p class="technical">
+                Fujicolor DPII Silk · Подпись автора<br />Два размера ·
+                Оформление по запросу
+              </p>
+              <fieldset class="edition-choice">
+                <legend class="sr-only">
+                  Комплектация работы «Сити в тумане»
+                </legend>
+                <label
+                  ><input
+                    type="radio"
+                    name="edition-3"
+                    value="print"
+                    checked
+                  /><span>Только отпечаток</span></label
+                >
+                <label
+                  ><input type="radio" name="edition-3" value="frame" /><span
+                    >В кастомной раме</span
+                  ></label
+                >
+              </fieldset>
+              <p class="work-price" data-price>от ≈ 5 900 ₽</p>
+              <p class="frame-note">
+                Шлифованная сталь — вариант оформления. Стоимость и изготовление
+                обсуждаются отдельно.
+              </p>
+              <div class="placard-actions">
+                <button type="button" data-inspect="3">
+                  Рассмотреть вблизи <span aria-hidden="true">↗</span></button
+                ><button type="button" data-order="3">
+                  Запросить отпечаток <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section
+          class="exhibit-section portrait forged light-right"
+          id="etude-4"
+          data-work="4"
+          aria-labelledby="title-4"
+        >
+          <div class="warm-pool" aria-hidden="true"></div>
+          <div class="spotlight" aria-hidden="true">
+            <img
+              src="spotlight.png"
+              alt=""
+              width="1536"
+              height="1024"
+              loading="lazy"
+            />
+          </div>
+          <div class="exhibit-layout">
+            <button
+              class="framed-artwork"
+              data-inspect="4"
+              style="--top: 11.8%; --left: 14.5%; --width: 71%; --height: 74.2%"
+              aria-label="Рассмотреть фотографию «Космай»"
+            >
+              <img
+                class="frame-image"
+                src="frame-4.png"
+                alt=""
+                width="1086"
+                height="1448"
+                loading="lazy"
+              />
+              <span class="photo-window"
+                ><img
+                  src="photo-4.jpg"
+                  alt="Бетонный монумент Космай в снегу и зимнем тумане"
+                  loading="lazy" /><span class="glass" aria-hidden="true"></span
+              ></span>
+            </button>
+            <article class="museum-placard">
+              <p class="catalog-number">ÉTUDE 04 / 04 <span>Сербия</span></p>
+              <h2 id="title-4">Космай</h2>
+              <p class="work-description">
+                Бетонные лучи, зимняя тишина и память о будущем.
+              </p>
+              <p class="technical">
+                Fujicolor DPII Silk · Подпись автора<br />Два размера ·
+                Оформление по запросу
+              </p>
+              <fieldset class="edition-choice">
+                <legend class="sr-only">Комплектация работы «Космай»</legend>
+                <label
+                  ><input
+                    type="radio"
+                    name="edition-4"
+                    value="print"
+                    checked
+                  /><span>Только отпечаток</span></label
+                >
+                <label
+                  ><input type="radio" name="edition-4" value="frame" /><span
+                    >В кастомной раме</span
+                  ></label
+                >
+              </fieldset>
+              <p class="work-price" data-price>от ≈ 5 900 ₽</p>
+              <p class="frame-note">
+                Кованая сталь — вариант оформления. Стоимость и изготовление
+                обсуждаются отдельно.
+              </p>
+              <div class="placard-actions">
+                <button type="button" data-inspect="4">
+                  Рассмотреть вблизи <span aria-hidden="true">↗</span></button
+                ><button type="button" data-order="4">
+                  Запросить отпечаток <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </article>
+          </div>
+        </section>
+        <footer class="exhibition-footer">
+          <p class="catalog-number">ОТ ФАЙЛА ДО СТЕНЫ</p>
+          <h2>Что вы получите</h2>
+          <div class="delivery-details">
+            <article>
+              <span>01 / ОТПЕЧАТОК</span>
+              <h3>Фотография, которую можно потрогать</h3>
+              <p>
+                Печать на Fujicolor Crystal Archive DPII Silk с шелковистой
+                поверхностью. Листы 40 × 60 и 60 × 90 см. Пропорции оригинала
+                сохраняются, при необходимости остаются белые поля.
+              </p>
+            </article>
+            <article>
+              <span>02 / АВТОР</span>
+              <h3>Личная подпись</h3>
+              <p>
+                Каждый отпечаток проверяет и подписывает Игорь Печорский.
+                Материал, итоговую стоимость и срок подтверждаем до оплаты.
+              </p>
+            </article>
+            <article>
+              <span>03 / ДОСТАВКА</span>
+              <h3>От мастерской до вашей стены</h3>
+              <p>
+                Отпечаток без рамы — в защитной упаковке и жёстком тубусе.
+                Доставка рассчитывается отдельно. Раму и сборку согласуем
+                индивидуально.
+              </p>
+            </article>
+          </div>
+          <div class="footer-bottom">
+            <p>Études Urbaines <span>© Игорь Печорский, 2026</span></p>
+            <a href="https://t.me/yopech" target="_blank" rel="noopener"
+              >Написать автору ↗</a
+            ><button id="exit-exhibition" type="button">
+              Вернуться к рубильнику ↑
+            </button>
+          </div>
+        </footer>
       </div>
-      <div class="more-works"><h2>Другие работы</h2><div id="related-grid" class="related-grid"></div></div>
-    </section>
-    <section id="print" class="print-section" aria-labelledby="print-title"><div class="page-width">
-      <div class="section-heading"><p class="eyebrow">От файла до стены</p><h2 id="print-title">Что вы получите</h2><p>Отпечаток, который можно оформить <br>так, как подходит вашему дому.</p></div>
-      <div class="print-facts">
-        <article><span class="fact-number">01 / Печать</span><h3>Фотобумага Silk</h3><p>Печать на Durst, Fujicolor Crystal Archive DPII Silk. У бумаги мелкая шелковистая фактура. Перед отправкой я проверяю каждый отпечаток.</p></article>
-        <article><span class="fact-number">02 / Комплект</span><h3>С подписью автора</h3><p>Подпись на обороте и сертификат с названием фотографии, автором и размером. Раму вы выбираете отдельно. Цифровой файл в покупку не входит.</p></article>
-        <article><span class="fact-number">03 / Упаковка</span><h3>В защитном тубусе</h3><p>Отпечаток отправляется свёрнутым, с защитным межслойным материалом. Упаковка включена в цену. Доставка рассчитывается отдельно.</p></article>
+    </main>
+    <nav class="hall-navigation" aria-label="Работы выставки">
+      <a href="#etude-1" aria-label="Спасатель 03">01</a
+      ><a href="#etude-2" aria-label="Тбилиси">02</a
+      ><a href="#etude-3" aria-label="Сити в тумане">03</a
+      ><a href="#etude-4" aria-label="Космай">04</a>
+    </nav>
+    <button
+      class="sound"
+      id="sound"
+      type="button"
+      aria-pressed="true"
+      aria-label="Звук выставки"
+    >
+      Звук: вкл.
+    </button>
+    <p class="sr-only" id="status" role="status" aria-live="polite">
+      Свет выключен.
+    </p>
+    <dialog
+      class="inspection-dialog"
+      id="inspection"
+      aria-labelledby="inspection-title"
+    >
+      <div class="dialog-top">
+        <p id="inspection-title"></p>
+        <button
+          class="dialog-close"
+          type="button"
+          data-close
+          aria-label="Закрыть просмотр"
+        >
+          ×
+        </button>
       </div>
-      <div class="how-to-order"><h3>Как заказать</h3><ol><li><span>Выберите работу и размер.</span> Напишите мне в Telegram — можно отправить готовый текст из карточки.</li><li><span>Согласуем детали.</span> Подтвержу макет, сумму с доставкой, срок и способ оплаты.</li><li><span>Подготовлю отпечаток.</span> Ориентир до отправки — 5–7 рабочих дней после оплаты и согласования макета. Срок доставки зависит от города.</li></ol></div>
-      <div class="delivery-note"><p>Перед оплатой обсудим условия получения, обмена и возврата. Если отпечаток приехал повреждённым, пришлите фотографии работы и упаковки — разберёмся с заменой.</p><p>После получения берите отпечаток за края. За помощью с распрямлением и оформлением можно обратиться в багетную мастерскую.</p></div>
-    </div></section>
-    <section id="author" class="author-section page-width" aria-labelledby="author-title">
-      <div class="author-portrait"><img src="assets/web/author.jpg" width="480" height="480" loading="lazy" alt="Игорь Печорский"><span class="portrait-fallback" aria-hidden="true">ИП</span></div>
-      <div class="author-copy"><p class="eyebrow">За камерой</p><h2 id="author-title">Игорь Печорский</h2><p>Снимаю архитектуру и уличную жизнь. В этой подборке — фотографии из Москвы, Тбилиси, Барселоны и Сербии. Каждую работу печатаю под заказ и проверяю перед отправкой.</p><div class="author-links"><a href="https://t.me/yopech" target="_blank" rel="noopener noreferrer" class="text-link">Написать в Telegram ↗</a><a href="tel:+79126201728">+7 (912) 620-17-28</a></div></div>
-      <aside class="designer-note" id="designers"><p class="eyebrow">Дизайнерам</p><p>Если подбираете фотографии для проекта, напишите мне. Пришлю размеры и помогу выбрать работы.</p><a href="https://t.me/yopech" target="_blank" rel="noopener noreferrer" class="text-link">Обсудить проект ↗</a></aside>
-    </section>
-  </main>
-  <footer class="site-footer page-width"><span>© <span id="current-year">2026</span> Игорь Печорский</span><a href="#works">Études urbaines</a><span>Авторская фотография</span></footer>
-  <dialog id="image-dialog" aria-labelledby="zoom-title"><div class="dialog-toolbar"><h2 id="zoom-title"></h2><button type="button" id="close-zoom" aria-label="Закрыть увеличенную фотографию">Закрыть <span aria-hidden="true">×</span></button></div><div class="zoom-image-wrap"><img id="zoom-image" alt=""><p id="zoom-error" hidden>Не удалось загрузить фотографию. Закройте просмотр и попробуйте снова.</p></div><p class="zoom-description">Фотография целиком. Поля выбранного листа показаны в карточке работы.</p></dialog>
-</body>
+      <div class="inspection-viewport">
+        <div class="inspection-paper">
+          <img id="inspection-photo" alt="" /><span
+            class="paper-grain"
+            aria-hidden="true"
+          ></span>
+        </div>
+      </div>
+      <div class="inspection-bottom">
+        <p>Оригинальная фотография · без кадрирования</p>
+        <button id="zoom-toggle" type="button" aria-pressed="false">
+          Увеличить +</button
+        ><button id="inspect-order" type="button">Запросить отпечаток →</button>
+      </div>
+    </dialog>
+    <dialog class="order-dialog" id="order" aria-labelledby="order-title">
+      <button
+        class="dialog-close"
+        type="button"
+        data-close
+        aria-label="Закрыть запрос"
+      >
+        ×
+      </button>
+      <p class="catalog-number">ЛИЧНЫЙ ЗАПРОС АВТОРУ</p>
+      <h2 id="order-title">Ваш отпечаток</h2>
+      <p class="order-work" id="order-work"></p>
+      <form id="order-form">
+        <label class="field-label" for="order-size">Размер листа</label
+        ><select id="order-size" name="size">
+          <option value="small">40 × 60 см — ≈ 5 900 ₽</option>
+          <option value="large">60 × 90 см — ≈ 9 900 ₽</option>
+        </select>
+        <fieldset class="order-edition">
+          <legend>Комплектация</legend>
+          <label
+            ><input type="radio" name="order-edition" value="print" checked />
+            Только отпечаток</label
+          ><label
+            ><input type="radio" name="order-edition" value="frame" /> В
+            кастомной раме, по запросу</label
+          >
+        </fieldset>
+        <p id="order-summary"></p>
+        <p class="order-help">
+          Откроется Telegram с подготовленным сообщением Игорю. Отправьте его,
+          чтобы согласовать срок, доставку и оплату.
+        </p>
+        <a
+          class="telegram-order"
+          id="telegram-order"
+          href="https://t.me/yopech"
+          target="_blank"
+          rel="noopener"
+          >Обсудить заказ в Telegram ↗</a
+        ><button class="copy-order" id="copy-order" type="button">
+          Скопировать запрос
+        </button>
+        <p id="copy-status" role="status"></p>
+      </form>
+    </dialog>
+    <noscript
+      ><div class="noscript">
+        Для интерактивной выставки включите JavaScript.
+        <a href="https://t.me/yopech">Связаться с автором</a>
+      </div></noscript
+    >
+  </body>
 </html>
