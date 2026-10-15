@@ -160,7 +160,7 @@
     document
       .querySelector("#exhibition")
       .setAttribute("aria-hidden", String(!active));
-    if (!active) window.scrollTo({ top: 0, behavior: "instant" });
+    if (!active) globalThis.ExhibitionScroll.to(0, { immediate: true });
     window.dispatchEvent(
       new CustomEvent("exhibitionpower", { detail: { active } }),
     );
@@ -237,6 +237,6 @@
     globalThis.ExhibitionPower.openSilently();
     document.querySelector("#entry-recovery").hidden = true;
     document.querySelector("#notice").textContent = "";
-    document.querySelector("#etude-1").scrollIntoView({ behavior: "smooth" });
+    globalThis.ExhibitionScroll.to("#etude-1");
   });
 })();

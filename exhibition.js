@@ -202,10 +202,7 @@
   document.fonts.ready.then(measure);
   measure();
   document.querySelector("#exit-exhibition").addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: reduced.matches ? "instant" : "smooth",
-    });
+    globalThis.ExhibitionScroll.to(0);
     document.querySelector("#breaker").focus({ preventScroll: true });
   });
 
@@ -475,7 +472,7 @@
       globalThis.ExhibitionPower.openSilently();
       const work = works[Number(directRoute[1] || directRoute[3]) - 1];
       requestAnimationFrame(() => {
-        work.section.scrollIntoView({ behavior: "instant", block: "center" });
+        globalThis.ExhibitionScroll.to(work.section, { immediate: true });
         if (directRoute[2]) {
           history.replaceState(null, "", `#etude-${work.id}`);
           if (directRoute[2] === "view") inspect(work, work.artwork);

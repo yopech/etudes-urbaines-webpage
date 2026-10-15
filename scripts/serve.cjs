@@ -37,6 +37,7 @@ const server = http.createServer((req, res) => {
       "exhibition.js",
       "neon.css",
       "power.js",
+      "scroll.js",
       "favicon.svg",
     ].includes(relative) ||
     /^(neon-(off|partial|on)|switch-(off|on)|concrete-tile|photo-[1-4])\.jpg$/.test(relative) ||

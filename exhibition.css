@@ -37,6 +37,9 @@ html {
   scroll-padding-top: 24px;
   scrollbar-gutter: stable;
 }
+html.has-smooth-scroll {
+  scroll-behavior: auto !important;
+}
 body {
   height: 100vh;
   overflow: hidden;
@@ -246,7 +249,8 @@ main {
   object-fit: contain;
   pointer-events: none;
   user-select: none;
-  filter: brightness(.58) contrast(1.06) drop-shadow(0 18px 28px rgba(0, 0, 0, 0.92));
+  filter: brightness(0.58) contrast(1.06)
+    drop-shadow(0 18px 28px rgba(0, 0, 0, 0.92));
 }
 .switch-on {
   opacity: 0;
