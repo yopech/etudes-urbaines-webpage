@@ -114,7 +114,7 @@
         "Браузер не разрешил звук. Вывеска работает без него.";
     }
   }
-  function toggle() {
+  function toggle(silent = false) {
     active = !active;
     const token = ++version;
     stopAudio();
@@ -133,9 +133,14 @@
     button.setAttribute("aria-checked", String(active));
     caption.textContent = active ? "Погасить свет" : "Включить свет";
     status.textContent = active ? "Вывеска включена." : "Свет выключен.";
-    void audio(active, true, token);
+    if (!silent) void audio(active, true, token);
   }
-  button.addEventListener("click", toggle);
+  button.addEventListener("click", () => toggle());
+  globalThis.ExhibitionPower = {
+    openSilently() {
+      if (!active) toggle(true);
+    },
+  };
   soundButton.addEventListener("click", () => {
     soundEnabled = !soundEnabled;
     const token = ++version;
@@ -165,18 +170,39 @@
     stopAudio();
     if (active && soundEnabled) void audio(true, false, token);
   });
+  const loading = setTimeout(() => {
+    document.querySelector("#notice").textContent = "Загружаем выставку…";
+  }, 1200);
   Promise.all(
     [...stage.querySelectorAll("img"), ...button.querySelectorAll("img")].map(
       (image) => image.decode(),
     ),
   )
     .then(() => {
+      globalThis.ExhibitionPower.ready = true;
+      clearTimeout(loading);
+      document.querySelector("#notice").textContent = "";
       button.disabled = false;
       caption.textContent = "Включить свет";
+      window.dispatchEvent(new Event("exhibitionready"));
     })
     .catch(() => {
+      globalThis.ExhibitionPower.ready = true;
+      clearTimeout(loading);
       caption.textContent = "Не удалось загрузить вывеску";
       document.querySelector("#notice").textContent =
-        "Проверьте файлы neon-off.jpg, neon-partial.jpg и neon-on.jpg в папке assets/web и обновите страницу.";
+        "Не удалось загрузить вход в выставку. Повторите попытку или откройте зал без анимации.";
+      document.querySelector("#entry-recovery").hidden = false;
+      window.dispatchEvent(new Event("exhibitionready"));
     });
+  document
+    .querySelector("#retry-entry")
+    .addEventListener("click", () => location.reload());
+  document.querySelector("#skip-entry").addEventListener("click", () => {
+    button.disabled = false;
+    globalThis.ExhibitionPower.openSilently();
+    document.querySelector("#entry-recovery").hidden = true;
+    document.querySelector("#notice").textContent = "";
+    document.querySelector("#etude-1").scrollIntoView({ behavior: "smooth" });
+  });
 })();

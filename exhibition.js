@@ -26,6 +26,8 @@
     geometry = works.map((work) => {
       const section = work.section.getBoundingClientRect();
       const art = work.artwork.getBoundingClientRect();
+      const currentShift =
+        parseFloat(work.section.style.getPropertyValue("--frame-y")) || 0;
       const placard = work.placard.getBoundingClientRect();
       const lamp = work.section
         .querySelector(".spotlight")
@@ -34,7 +36,7 @@
         top: section.top + scroll,
         height: section.height,
         x: art.left + art.width / 2,
-        artTop: art.top + scroll,
+        artTop: art.top + scroll - currentShift,
         artWidth: art.width,
         artHeight: art.height,
         labelX: placard.left + placard.width / 2,
@@ -82,17 +84,6 @@
       section.style.setProperty("--frame-y", `${artY.toFixed(1)}px`);
       section.style.setProperty("--shine", `${30 + (offset / height) * 70}%`);
       const artCenterY = g.artTop - g.top + g.artHeight * 0.52 + artY;
-      const labelCenterY = g.labelTop - g.top + g.labelHeight * 0.5;
-      const localMasks = [
-        `radial-gradient(ellipse ${Math.max(250, g.artWidth * 0.95)}px ${Math.max(270, g.artHeight * 0.8)}px at ${g.x}px ${artCenterY}px,rgba(0,0,0,${(0.95 * light).toFixed(2)}) 0%,rgba(0,0,0,${(0.6 * light).toFixed(2)}) 35%,transparent 100%)`,
-        `radial-gradient(ellipse 260px 300px at ${g.labelX}px ${labelCenterY}px,rgba(0,0,0,${(0.65 * light).toFixed(2)}),transparent 100%)`,
-      ];
-      if (pointer && now < pointerUntil)
-        localMasks.push(
-          `radial-gradient(circle 280px at ${pointer.x}px ${pointer.y + scroll - g.top}px,#0008,transparent 100%)`,
-        );
-      section.style.setProperty("--surface-mask", localMasks.join(","));
-      section.style.setProperty("--texture-y", `${-g.top % 520}px`);
       section.style.setProperty("--pool-x", `${g.x}px`);
       section.style.setProperty("--pool-y", `${artCenterY}px`);
       section.style.setProperty(
@@ -222,16 +213,34 @@
   const paper = document.querySelector(".inspection-paper");
   const zoom = document.querySelector("#zoom-toggle");
   const size = document.querySelector("#order-size");
+  const catalog = globalThis.PrintCatalog;
+  const drafts = new Map();
+  const focusOrigins = new WeakMap();
+  const inspectionStatus = document.querySelector("#inspection-status");
+  const retryPhoto = document.querySelector("#retry-photo");
+  let modalHistory = false,
+    restoringHistory = false;
   let currentWork = works[0],
     returnFocus = null,
     orderMessage = "";
   function show(dialog, trigger) {
     returnFocus = trigger;
+    focusOrigins.set(dialog, trigger);
+    const route = `${dialog === inspection ? "view" : "order"}/${currentWork.id}`;
+    if (restoringHistory) {
+      /* Existing browser history entry owns this route. */
+    } else if (modalHistory)
+      history.replaceState({ exhibitionDialog: route }, "", `#${route}`);
+    else {
+      history.pushState({ exhibitionDialog: route }, "", `#${route}`);
+      modalHistory = true;
+    }
     dialog.showModal();
     body.classList.add("dialog-open");
   }
   function close(dialog) {
-    dialog.close();
+    if (modalHistory) history.back();
+    else dialog.close();
   }
   for (const dialog of [inspection, order]) {
     dialog
@@ -250,20 +259,69 @@
       }
     });
     dialog.addEventListener("close", () => {
+      if (inspection.open || order.open) return;
       body.classList.remove("dialog-open");
-      returnFocus?.focus({ preventScroll: true });
+      focusOrigins.get(dialog)?.focus({ preventScroll: true });
+    });
+    dialog.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      close(dialog);
     });
   }
+  window.addEventListener("popstate", () => {
+    const route = location.hash.match(/^#(view|order)\/([1-4])$/);
+    if (route) {
+      modalHistory = true;
+      restoringHistory = true;
+      const work = works[Number(route[2]) - 1];
+      if (route[1] === "view") {
+        order.close();
+        if (!inspection.open) inspect(work, work.artwork);
+      } else {
+        inspection.close();
+        if (!order.open)
+          requestOrder(work, work.section.querySelector("[data-order]"));
+      }
+      restoringHistory = false;
+      return;
+    }
+    modalHistory = false;
+    inspection.close();
+    order.close();
+  });
+  function loadInspectionPhoto() {
+    image.hidden = true;
+    inspectionStatus.hidden = false;
+    inspectionStatus.textContent = "Загрузка фотографии…";
+    retryPhoto.hidden = true;
+    zoom.disabled = true;
+    image.src = `photo-${currentWork.id}.jpg`;
+  }
+  image.addEventListener("load", () => {
+    image.hidden = false;
+    inspectionStatus.hidden = true;
+    zoom.disabled = false;
+  });
+  image.addEventListener("error", () => {
+    image.hidden = true;
+    inspectionStatus.hidden = false;
+    inspectionStatus.textContent =
+      "Фотография не загрузилась. Проверьте соединение и повторите попытку.";
+    retryPhoto.hidden = false;
+    zoom.disabled = true;
+  });
+  retryPhoto.addEventListener("click", loadInspectionPhoto);
   function inspect(work, trigger) {
     currentWork = work;
     document.querySelector("#inspection-title").textContent =
       `ÉTUDE 0${work.id} / ${work.title} · ${work.place}`;
-    image.src = `photo-${work.id}.jpg`;
+    loadInspectionPhoto();
     image.alt = work.artwork.querySelector(".photo-window img").alt;
     paper.classList.remove("is-zoomed");
     zoom.setAttribute("aria-pressed", "false");
     zoom.textContent = "Увеличить +";
     show(inspection, trigger);
+    document.querySelector(".inspection-viewport").scrollTo(0, 0);
   }
   zoom.addEventListener("click", () => {
     const zoomed = paper.classList.toggle("is-zoomed");
@@ -274,18 +332,27 @@
     const framed =
       order.querySelector('input[name="order-edition"]:checked').value ===
       "frame";
-    const large = size.value === "large";
-    const vertical = currentWork.section.classList.contains("portrait");
-    const dimensions = large
-      ? vertical
-        ? "60 × 90"
-        : "90 × 60"
-      : vertical
-        ? "40 × 60"
-        : "60 × 40";
-    const price = large ? "9 900" : "5 900";
+    const item = catalog.works[currentWork.id - 1];
+    const geometry = catalog.dimensions(item, size.value);
+    const dimensions = catalog.formatDimensions(
+      geometry.sheetWidth,
+      geometry.sheetHeight,
+    );
+    const price = catalog.formatNumber(catalog.sizes[size.value].price);
+    drafts.set(currentWork.id, {
+      size: size.value,
+      edition: framed ? "frame" : "print",
+    });
+    currentWork.section.querySelector(
+      `.edition-choice input[value="${framed ? "frame" : "print"}"]`,
+    ).checked = true;
+    syncEdition(currentWork);
+    const imageDimensions = catalog.formatDimensions(
+      geometry.imageWidth,
+      geometry.imageHeight,
+    );
     document.querySelector("#order-summary").textContent =
-      `Лист ${dimensions} см · отпечаток ≈ ${price} ₽. ${framed ? "Рама и сборка рассчитываются отдельно." : "Защитная упаковка и тубус включены."} Доставка отдельно. Срок подтвердит автор.`;
+      `Лист ${dimensions} см · изображение ≈ ${imageDimensions} см, без обрезки. Отпечаток ≈ ${price} ₽. ${framed ? "Рама и сборка рассчитываются отдельно." : "Защитная упаковка и тубус включены."} Доставка отдельно. Срок подтвердит автор.`;
     orderMessage = `Здравствуйте, Игорь! Хочу заказать «${currentWork.title}» (${currentWork.place}).\nЛист: ${dimensions} см, с сохранением пропорций оригинала.\nFujicolor Crystal Archive DPII Silk.\nКомплектация: ${framed ? "в кастомной раме, прошу рассчитать оформление и сборку" : "только отпечаток, без рамы и паспарту, доставка в тубусе"}.\nПредварительная цена отпечатка: ≈ ${price} ₽.\nПодскажите итоговую стоимость, срок и доставку.`;
     document.querySelector("#telegram-order").href =
       `https://t.me/yopech?text=${encodeURIComponent(orderMessage)}`;
@@ -297,6 +364,11 @@
     const edition = work.section.querySelector(
       'input[type="radio"]:checked',
     ).value;
+    size.value = drafts.get(work.id)?.size || "small";
+    for (const option of size.options) {
+      const d = catalog.dimensions(catalog.works[work.id - 1], option.value);
+      option.textContent = `${catalog.formatDimensions(d.sheetWidth, d.sheetHeight)} см — ≈ ${catalog.formatPrice(catalog.sizes[option.value].price)}`;
+    }
     order.querySelector(`input[value="${edition}"]`).checked = true;
     document.querySelector("#copy-status").textContent = "";
     updateOrder();
@@ -334,17 +406,40 @@
         "Не удалось скопировать. Откройте запрос в Telegram.";
     }
   });
+  function syncEdition(work) {
+    const framed =
+      work.section.querySelector("input:checked").value === "frame";
+    work.section.querySelector("[data-price]").textContent = framed
+      ? "Оформление по запросу"
+      : `от ≈ ${catalog.formatPrice(catalog.sizes.small.price)}`;
+    work.section.querySelector("[data-order]").firstChild.textContent = framed
+      ? "Обсудить оформление "
+      : "Запросить отпечаток ";
+  }
   works.forEach((work) =>
     work.section
       .querySelector(".edition-choice")
       .addEventListener("change", () => {
-        const framed =
-          work.section.querySelector("input:checked").value === "frame";
-        work.section.querySelector("[data-price]").textContent = framed
-          ? "Оформление по запросу"
-          : "от ≈ 5 900 ₽";
-        work.section.querySelector("[data-order]").firstChild.textContent =
-          framed ? "Обсудить оформление " : "Запросить отпечаток ";
+        syncEdition(work);
       }),
   );
+  const directRoute = location.hash.match(
+    /^#(?:etude-([1-4])|(view|order)\/([1-4]))$/,
+  );
+  if (directRoute) {
+    const openRoute = () => {
+      globalThis.ExhibitionPower.openSilently();
+      const work = works[Number(directRoute[1] || directRoute[3]) - 1];
+      requestAnimationFrame(() => {
+        work.section.scrollIntoView({ behavior: "instant", block: "center" });
+        if (directRoute[2]) {
+          history.replaceState(null, "", `#etude-${work.id}`);
+          if (directRoute[2] === "view") inspect(work, work.artwork);
+          else requestOrder(work, work.section.querySelector("[data-order]"));
+        }
+      });
+    };
+    if (globalThis.ExhibitionPower.ready) openRoute();
+    else window.addEventListener("exhibitionready", openRoute, { once: true });
+  }
 })();

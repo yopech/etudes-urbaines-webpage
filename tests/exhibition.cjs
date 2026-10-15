@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs/promises');
 const path = require('node:path');
 const AxeBuilder = require('@axe-core/playwright').default;
-const url = 'http://127.0.0.1:4173/';
+const url = process.env.EXHIBITION_URL || 'http://127.0.0.1:4173/';
 const output = path.resolve(__dirname, '../test-results');
 (async () => {
   await fs.mkdir(output, { recursive: true });
@@ -28,7 +28,7 @@ const output = path.resolve(__dirname, '../test-results');
     assert.equal(await page.locator('.exhibit-section').count(), 4);
     await page.screenshot({ path: path.join(output, `exhibition-${engine}-hero.png`) });
     assert.equal(await page.locator('.entrance-credit').count(), 0);
-    assert.equal(await page.locator('.scroll-cue').innerText(), '↓');
+    assert.equal(await page.locator('.scroll-cue').getAttribute('aria-label'), 'Перейти к первой фотографии');
     assert.equal(await page.evaluate(() => getComputedStyle(document.body).backgroundColor), 'rgb(0, 0, 0)');
     const hum = await page.locator('.neon-on').evaluate(el => el.getAnimations().map(a => a.animationName));
     assert(hum.includes('voltage-hum'));
@@ -55,13 +55,13 @@ const output = path.resolve(__dirname, '../test-results');
       await page.locator('#order-size').selectOption('large');
       await page.locator('#order input[value="frame"]').check();
       const href = await page.locator('#telegram-order').getAttribute('href');
-      assert(decodeURIComponent(href).includes('9 900'));
+      assert(/9\s900/.test(decodeURIComponent(href)));
       assert(decodeURIComponent(href).includes('в кастомной раме'));
       await page.keyboard.press('Escape');
     }
     const axe = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
     assert.deepEqual(axe.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) })), []);
-    for (const width of [390, 430, 768, 1440]) {
+    for (const width of [320, 375, 390, 430, 768, 1440]) {
       await page.setViewportSize({ width, height: width < 700 ? 844 : 1000 });
       await page.locator('#etude-1').scrollIntoViewIfNeeded();
       await page.waitForTimeout(350);

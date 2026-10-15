@@ -14,6 +14,7 @@
     <link rel="preload" as="image" href="neon-on.jpg" />
     <link rel="stylesheet" href="neon.css" />
     <link rel="stylesheet" href="exhibition.css" />
+    <script defer src="catalog.js"></script>
     <script defer src="power.js"></script>
     <script defer src="exhibition.js"></script>
   </head>
@@ -89,14 +90,32 @@
           </button>
           <p class="sr-only" id="caption">Загрузка вывески…</p>
           <p class="notice" id="notice" role="status"></p>
+          <div id="entry-recovery" hidden>
+            <button type="button" id="retry-entry">Повторить загрузку</button
+            ><button type="button" id="skip-entry">
+              Открыть зал без анимации
+            </button>
+          </div>
         </div>
         <a
           class="scroll-cue"
           href="#etude-1"
           tabindex="-1"
           aria-label="Перейти к первой фотографии"
-          ><span aria-hidden="true">↓</span></a
-        >
+          ><span aria-hidden="true"
+            ><svg
+              class="ui-icon"
+              viewBox="0 0 20 20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M10 3v14m-5-5 5 5 5-5" /></svg></span
+        ></a>
       </section>
       <div id="exhibition" inert aria-hidden="true">
         <section
@@ -132,7 +151,14 @@
               />
               <span class="photo-window"
                 ><img
-                  src="photo-1.jpg"
+                  src="assets/web/rescuer-03-1280.jpg"
+                  srcset="
+                    assets/web/rescuer-03-800.jpg   800w,
+                    assets/web/rescuer-03-1280.jpg 1280w,
+                    assets/web/rescuer-03-2000.jpg 2000w
+                  "
+                  sizes="(max-width:700px) 70vw, 500px"
+                  decoding="async"
                   alt="Спасатель в жёлтой рубашке, красный номер 03 и отражение пляжа Барселоны"
                   loading="lazy" /><span class="glass" aria-hidden="true"></span
               ></span>
@@ -172,9 +198,37 @@
               </p>
               <div class="placard-actions">
                 <button type="button" data-inspect="1">
-                  Рассмотреть вблизи <span aria-hidden="true">↗</span></button
+                  Рассмотреть вблизи
+                  <span aria-hidden="true"
+                    ><svg
+                      class="ui-icon"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="M4 16 16 4M5 4h11v11" /></svg
+                  ></span></button
                 ><button type="button" data-order="1">
-                  Запросить отпечаток <span aria-hidden="true">→</span>
+                  Запросить отпечаток
+                  <span aria-hidden="true"
+                    ><svg
+                      class="ui-icon"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="M3 10h14m-5-5 5 5-5 5" /></svg
+                  ></span>
                 </button>
               </div>
             </article>
@@ -214,7 +268,14 @@
               />
               <span class="photo-window"
                 ><img
-                  src="photo-2.jpg"
+                  src="assets/web/tbilisi-1280.jpg"
+                  srcset="
+                    assets/web/tbilisi-800.jpg   800w,
+                    assets/web/tbilisi-1280.jpg 1280w,
+                    assets/web/tbilisi-2000.jpg 2000w
+                  "
+                  sizes="(max-width:700px) 70vw, 500px"
+                  decoding="async"
                   alt="Светлый угловой фасад с бирюзовыми деталями под синим небом Тбилиси"
                   loading="lazy" /><span class="glass" aria-hidden="true"></span
               ></span>
@@ -252,9 +313,37 @@
               </p>
               <div class="placard-actions">
                 <button type="button" data-inspect="2">
-                  Рассмотреть вблизи <span aria-hidden="true">↗</span></button
+                  Рассмотреть вблизи
+                  <span aria-hidden="true"
+                    ><svg
+                      class="ui-icon"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="M4 16 16 4M5 4h11v11" /></svg
+                  ></span></button
                 ><button type="button" data-order="2">
-                  Запросить отпечаток <span aria-hidden="true">→</span>
+                  Запросить отпечаток
+                  <span aria-hidden="true"
+                    ><svg
+                      class="ui-icon"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="M3 10h14m-5-5 5 5-5 5" /></svg
+                  ></span>
                 </button>
               </div>
             </article>
@@ -294,7 +383,14 @@
               />
               <span class="photo-window"
                 ><img
-                  src="photo-3.jpg"
+                  src="assets/web/city-1280.jpg"
+                  srcset="
+                    assets/web/city-800.jpg   800w,
+                    assets/web/city-1280.jpg 1280w,
+                    assets/web/city-2000.jpg 2000w
+                  "
+                  sizes="(max-width:700px) 70vw, 500px"
+                  decoding="async"
                   alt="Башни Москва-Сити растворяются в тумане над эстакадой с синей подсветкой"
                   loading="lazy" /><span class="glass" aria-hidden="true"></span
               ></span>
@@ -335,9 +431,37 @@
               </p>
               <div class="placard-actions">
                 <button type="button" data-inspect="3">
-                  Рассмотреть вблизи <span aria-hidden="true">↗</span></button
+                  Рассмотреть вблизи
+                  <span aria-hidden="true"
+                    ><svg
+                      class="ui-icon"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="M4 16 16 4M5 4h11v11" /></svg
+                  ></span></button
                 ><button type="button" data-order="3">
-                  Запросить отпечаток <span aria-hidden="true">→</span>
+                  Запросить отпечаток
+                  <span aria-hidden="true"
+                    ><svg
+                      class="ui-icon"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="M3 10h14m-5-5 5 5-5 5" /></svg
+                  ></span>
                 </button>
               </div>
             </article>
@@ -377,7 +501,14 @@
               />
               <span class="photo-window"
                 ><img
-                  src="photo-4.jpg"
+                  src="assets/web/kosmaj-1280.jpg"
+                  srcset="
+                    assets/web/kosmaj-800.jpg   800w,
+                    assets/web/kosmaj-1280.jpg 1280w,
+                    assets/web/kosmaj-2000.jpg 2000w
+                  "
+                  sizes="(max-width:700px) 70vw, 500px"
+                  decoding="async"
                   alt="Бетонный монумент Космай в снегу и зимнем тумане"
                   loading="lazy" /><span class="glass" aria-hidden="true"></span
               ></span>
@@ -415,20 +546,46 @@
               </p>
               <div class="placard-actions">
                 <button type="button" data-inspect="4">
-                  Рассмотреть вблизи <span aria-hidden="true">↗</span></button
+                  Рассмотреть вблизи
+                  <span aria-hidden="true"
+                    ><svg
+                      class="ui-icon"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="M4 16 16 4M5 4h11v11" /></svg
+                  ></span></button
                 ><button type="button" data-order="4">
-                  Запросить отпечаток <span aria-hidden="true">→</span>
+                  Запросить отпечаток
+                  <span aria-hidden="true"
+                    ><svg
+                      class="ui-icon"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="M3 10h14m-5-5 5 5-5 5" /></svg
+                  ></span>
                 </button>
               </div>
             </article>
           </div>
         </section>
         <footer class="exhibition-footer">
-          <p class="catalog-number">ОТ ФАЙЛА ДО СТЕНЫ</p>
           <h2>Что вы получите</h2>
           <div class="delivery-details">
             <article>
-              <span>01 / ОТПЕЧАТОК</span>
               <h3>Фотография, которую можно потрогать</h3>
               <p>
                 Печать на Fujicolor Crystal Archive DPII Silk с шелковистой
@@ -437,7 +594,6 @@
               </p>
             </article>
             <article>
-              <span>02 / АВТОР</span>
               <h3>Личная подпись</h3>
               <p>
                 Каждый отпечаток проверяет и подписывает Игорь Печорский.
@@ -445,7 +601,6 @@
               </p>
             </article>
             <article>
-              <span>03 / ДОСТАВКА</span>
               <h3>От мастерской до вашей стены</h3>
               <p>
                 Отпечаток без рамы — в защитной упаковке и жёстком тубусе.
@@ -457,9 +612,34 @@
           <div class="footer-bottom">
             <p>Études Urbaines <span>© Игорь Печорский, 2026</span></p>
             <a href="https://t.me/yopech" target="_blank" rel="noopener"
-              >Написать автору ↗</a
+              >Написать автору
+              <svg
+                class="ui-icon"
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="M4 16 16 4M5 4h11v11" /></svg></a
             ><button id="exit-exhibition" type="button">
-              Вернуться к рубильнику ↑
+              Вернуться к рубильнику
+              <svg
+                class="ui-icon"
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="M10 17V3M5 8l5-5 5 5" />
+              </svg>
             </button>
           </div>
         </footer>
@@ -496,22 +676,50 @@
           data-close
           aria-label="Закрыть просмотр"
         >
-          ×
+          <svg
+            class="ui-icon"
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="m5 5 10 10M5 15 15 5" />
+          </svg>
         </button>
       </div>
       <div class="inspection-viewport">
         <div class="inspection-paper">
-          <img id="inspection-photo" alt="" /><span
-            class="paper-grain"
-            aria-hidden="true"
-          ></span>
+          <img id="inspection-photo" alt="" />
         </div>
       </div>
+      <p id="inspection-status" role="status" hidden></p>
+      <button id="retry-photo" type="button" hidden>
+        Загрузить фотографию ещё раз
+      </button>
       <div class="inspection-bottom">
         <p>Оригинальная фотография · без кадрирования</p>
         <button id="zoom-toggle" type="button" aria-pressed="false">
           Увеличить +</button
-        ><button id="inspect-order" type="button">Запросить отпечаток →</button>
+        ><button id="inspect-order" type="button">
+          Запросить отпечаток
+          <svg
+            class="ui-icon"
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M3 10h14m-5-5 5 5-5 5" />
+          </svg>
+        </button>
       </div>
     </dialog>
     <dialog class="order-dialog" id="order" aria-labelledby="order-title">
@@ -521,9 +729,20 @@
         data-close
         aria-label="Закрыть запрос"
       >
-        ×
+        <svg
+          class="ui-icon"
+          viewBox="0 0 20 20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path d="m5 5 10 10M5 15 15 5" />
+        </svg>
       </button>
-      <p class="catalog-number">ЛИЧНЫЙ ЗАПРОС АВТОРУ</p>
       <h2 id="order-title">Ваш отпечаток</h2>
       <p class="order-work" id="order-work"></p>
       <form id="order-form">
@@ -553,7 +772,19 @@
           href="https://t.me/yopech"
           target="_blank"
           rel="noopener"
-          >Обсудить заказ в Telegram ↗</a
+          >Обсудить заказ в Telegram
+          <svg
+            class="ui-icon"
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M4 16 16 4M5 4h11v11" /></svg></a
         ><button class="copy-order" id="copy-order" type="button">
           Скопировать запрос
         </button>
@@ -561,10 +792,46 @@
       </form>
     </dialog>
     <noscript
-      ><div class="noscript">
-        Для интерактивной выставки включите JavaScript.
-        <a href="https://t.me/yopech">Связаться с автором</a>
-      </div></noscript
+      ><style>
+        body {
+          height: auto;
+          overflow: auto;
+        }
+        .hero,
+        .hall-navigation,
+        .sound,
+        #exhibition {
+          display: none;
+        }
+        .static-gallery {
+          padding: 32px 24px;
+          max-width: 900px;
+          margin: auto;
+        }
+        .static-gallery img {
+          width: 100%;
+          height: auto;
+          margin: 32px 0 16px;
+        }
+        .static-gallery a {
+          display: inline-block;
+          padding: 16px 0;
+          color: #b9e0e4;
+        }
+      </style>
+      <main class="static-gallery">
+        <h1>Études Urbaines</h1>
+        <p>Фотографии Игоря Печорского. Отпечатки от 5 900 ₽.</p>
+        <img src="photo-1.jpg" alt="Спасатель 03, Барселона" /><img
+          src="photo-2.jpg"
+          alt="Тбилиси"
+        /><img src="photo-3.jpg" alt="Сити в тумане, Москва" /><img
+          src="photo-4.jpg"
+          alt="Космай, Сербия"
+        /><a href="https://t.me/yopech"
+          >Обсудить отпечаток с автором в Telegram</a
+        >
+      </main></noscript
     >
   </body>
 </html>

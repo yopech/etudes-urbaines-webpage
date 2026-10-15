@@ -11,6 +11,15 @@
   font-display: swap;
 }
 :root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --tap-size: 44px;
+  --motion-fast: 160ms;
+  --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ink: #f2eee7;
   --muted: #b4ada3;
   --accent: #9ddbe5;
@@ -138,18 +147,24 @@ main {
 .neon-stage {
   width: 100%;
   mix-blend-mode: screen;
-  -webkit-mask-image: radial-gradient(
-    ellipse 78% 70% at 50% 50%,
-    #000 40%,
-    rgba(0, 0, 0, 0.5) 65%,
-    transparent 95%
-  ), linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent), linear-gradient(transparent, #000 25%, #000 75%, transparent);
-  mask-image: radial-gradient(
-    ellipse 78% 70% at 50% 50%,
-    #000 40%,
-    rgba(0, 0, 0, 0.5) 65%,
-    transparent 95%
-  ), linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent), linear-gradient(transparent, #000 25%, #000 75%, transparent);
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 78% 70% at 50% 50%,
+      #000 40%,
+      rgba(0, 0, 0, 0.5) 65%,
+      transparent 95%
+    ),
+    linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent),
+    linear-gradient(transparent, #000 25%, #000 75%, transparent);
+  mask-image:
+    radial-gradient(
+      ellipse 78% 70% at 50% 50%,
+      #000 40%,
+      rgba(0, 0, 0, 0.5) 65%,
+      transparent 95%
+    ),
+    linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent),
+    linear-gradient(transparent, #000 25%, #000 75%, transparent);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
 }
@@ -1250,5 +1265,287 @@ select {
   .inspection-dialog[open],
   .order-dialog[open] {
     animation: none;
+  }
+}
+
+/* Shared interaction, reading and device rules for the exhibition. */
+.ui-icon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  vertical-align: middle;
+}
+.dialog-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.telegram-order {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.inspection-bottom button,
+.footer-bottom a,
+.footer-bottom button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+[hidden] {
+  display: none !important;
+}
+html {
+  scrollbar-gutter: stable;
+}
+.museum-placard {
+  padding: var(--space-6);
+  filter: none;
+}
+.work-description {
+  font-size: 14px;
+  line-height: 1.7;
+}
+.technical,
+.frame-note {
+  font-size: 12px;
+  line-height: 1.7;
+}
+.catalog-number {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+.edition-choice span {
+  font-size: 12px;
+  min-height: var(--tap-size);
+  display: flex;
+  align-items: center;
+  padding: var(--space-3);
+}
+.placard-actions button {
+  font-size: 14px;
+  min-height: 48px;
+  padding: var(--space-3) 0;
+}
+.placard-actions button:hover,
+.inspection-bottom button:hover,
+.footer-bottom a:hover,
+.footer-bottom button:hover {
+  color: white;
+}
+.placard-actions button:active,
+.inspection-bottom button:active,
+.telegram-order:active {
+  opacity: 0.72;
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: wait;
+}
+button,
+a {
+  transition:
+    color var(--motion-fast),
+    opacity var(--motion-fast),
+    background-color var(--motion-fast);
+}
+.scroll-cue {
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+}
+.hall-navigation a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  font-size: 12px;
+}
+.hall-navigation {
+  left: max(8px, env(safe-area-inset-left, 0px));
+  gap: var(--space-2);
+}
+.sound {
+  min-height: 44px;
+  font-size: 12px;
+  right: max(16px, env(safe-area-inset-right, 0px));
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+}
+.delivery-details p,
+.order-help,
+#order-summary {
+  font-size: 14px;
+  line-height: 1.8;
+}
+.footer-bottom a,
+.footer-bottom button {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+.footer-bottom span {
+  font-size: 12px;
+}
+.exhibition-footer {
+  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+}
+.inspection-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+.dialog-top {
+  flex: none;
+  min-height: 60px;
+  font-size: 14px;
+  padding: var(--space-2) var(--space-4);
+}
+.dialog-close {
+  min-width: 44px;
+  min-height: 44px;
+}
+.inspection-viewport {
+  flex: 1;
+  min-height: 0;
+  height: auto;
+  touch-action: pan-x pan-y pinch-zoom;
+}
+.inspection-bottom {
+  flex: none;
+  min-height: 72px;
+  padding: var(--space-3) var(--space-4);
+  gap: var(--space-4);
+  font-size: 12px;
+}
+.inspection-bottom p {
+  font-size: 12px;
+}
+.inspection-bottom button {
+  min-height: 44px;
+  font-size: 13px;
+}
+.inspection-paper.is-zoomed {
+  max-width: none;
+}
+.order-dialog {
+  padding: 48px var(--space-8) var(--space-6);
+  scroll-padding-bottom: var(--space-6);
+}
+.order-dialog h2 {
+  margin-top: 0;
+}
+.field-label,
+.order-edition legend {
+  font-size: 14px;
+}
+select {
+  font-size: 16px;
+  min-height: 48px;
+}
+.order-edition label {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14px;
+}
+.order-edition {
+  gap: var(--space-1);
+  margin: var(--space-6) 0;
+}
+.telegram-order,
+.copy-order {
+  min-height: 48px;
+  font-size: 14px;
+}
+#copy-status {
+  font-size: 13px;
+}
+#inspection-status {
+  padding: var(--space-4);
+  font-size: 14px;
+}
+#retry-photo,
+#entry-recovery button {
+  background: #182025;
+  color: #b9e0e4;
+  padding: var(--space-3) var(--space-4);
+  min-height: 48px;
+  font-size: 14px;
+}
+#entry-recovery {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 300px;
+}
+.notice {
+  font-size: 14px;
+}
+.work-price,
+#order-summary {
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 700px) {
+  .hall-navigation {
+    display: none;
+  }
+  .museum-placard {
+    width: calc(100% - 48px);
+    padding: var(--space-6);
+  }
+  .edition-choice {
+    grid-template-columns: 1fr;
+  }
+  .work-description {
+    font-size: 15px;
+  }
+  .technical,
+  .frame-note {
+    font-size: 13px;
+  }
+  .edition-choice span {
+    font-size: 13px;
+  }
+  .museum-placard h2 {
+    font-size: 34px;
+  }
+  .inspection-bottom p {
+    display: none;
+  }
+  .inspection-bottom {
+    gap: var(--space-2);
+    min-height: 72px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+  .inspection-bottom button {
+    font-size: 12px;
+  }
+  .order-dialog {
+    padding: 56px var(--space-6) calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+  .order-dialog h2 {
+    font-size: 32px;
+  }
+  .exhibition-footer {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+  .delivery-details p {
+    font-size: 15px;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .sound {
+    background: #111114;
+    backdrop-filter: none;
+  }
+  dialog::backdrop {
+    background: #000;
+    backdrop-filter: none;
+  }
+  .museum-placard {
+    background: #1b1916;
   }
 }
